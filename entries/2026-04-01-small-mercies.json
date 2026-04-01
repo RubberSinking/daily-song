@@ -1,0 +1,12 @@
+{
+  "date": "2026-04-01",
+  "display_date": "April 1, 2026",
+  "title": "Small Mercies",
+  "caption": "A quiet alt-folk-pop song about rain on the window, warm tea, and the ordinary things that hold a day together.",
+  "audio": "2026-04-01-small-mercies.mp3",
+  "image": "2026-04-01-small-mercies.png",
+  "lyrics": "2026-04-01-small-mercies.txt",
+  "model": "lyria-3-pro-preview",
+  "prompt": "1990s alt-folk-pop with intimate female vocals, fingerpicked acoustic guitar, subtle strings, and a reflective midweek mood.",
+  "duration_seconds": 175.9
+}
