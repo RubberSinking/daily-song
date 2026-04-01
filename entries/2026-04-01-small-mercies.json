@@ -8,5 +8,6 @@
   "lyrics": "2026-04-01-small-mercies.txt",
   "model": "lyria-3-pro-preview",
   "prompt": "1990s alt-folk-pop with intimate female vocals, fingerpicked acoustic guitar, subtle strings, and a reflective midweek mood.",
-  "duration_seconds": 175.9
+  "duration_seconds": 175.9,
+  "prompt_file": "2026-04-01-small-mercies.txt"
 }

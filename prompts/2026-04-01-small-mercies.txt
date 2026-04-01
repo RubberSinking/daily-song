@@ -1,0 +1,7 @@
+Reference-song description seed:
+
+Intimate, late-night piano-jazz-pop ballad with a warm, smoky female vocal delivered with extreme softness, control, and emotional understatement; arrangement should center on gently played piano, brushed drums, upright or rounded acoustic bass, delicate guitar fills, and subtle organ or room ambience, all performed with unhurried restraint; the tempo should feel easy and floating, with a touch of swing but mostly a relaxed singer-songwriter pulse; melody should be simple, elegant, and wistful, unfolding like private thought rather than vocal showmanship; lyrics should express regret, longing, and quiet self-questioning through plain but evocative lines, giving the sense of someone sitting alone after midnight replaying a missed chance; the song should feel classy, intimate, autumnal, and timeless, with space, breath, and emotional maturity carrying more weight than volume or drama.
+
+Actual generated-song prompt summary:
+
+1990s alt-folk-pop with intimate female vocals, fingerpicked acoustic guitar, subtle strings, and a reflective midweek mood.
