@@ -1,0 +1,72 @@
+[[A0]]
+[0.0:] The fluorescent hum is a heavy crown,
+[:] Folding chairs in a circle on the ground,
+[:] Cold coffee in a foam cup, bitter black,
+[:] A paper name tag stuck to your jacket back.
+[:] You’re leaning by the window while they drone,
+[:] Looking through the glass like you’re alone,
+[:] They’re making noise, they’re taking up the air,
+[:] But I’m counting the secrets that you keep in there.
+[[B1]]
+[32.0:] They don't see the fire, they just see the shade,
+[:] They're betting on the hands that are loudest in the parade.
+[:] But don't bet against the quiet ones,
+[:] Don't bet against the girl by the window in the setting sun.
+[:] I know that look because it used to be mine,
+[:] A different kind of rhythm, a different kind of line.
+[[A2]]
+[56.0:] I used to sit where the spotlight couldn't reach,
+[:] Learning more from the silence than the speech,
+[:] Watching the high-fives and the corporate smiles,
+[:] While I was planning out the next hundred miles.
+[:] Your eyes are sharp, they catch every mistake,
+[:] You know exactly how much they can fake,
+[:] Let 'em talk until the room begins to spin,
+[:] That's how you let the real world in.
+[[B3]]
+[88.0:] They don't see the fire, they just see the shade,
+[:] They're betting on the hands that are loudest in the parade.
+[:] But don't bet against the quiet ones,
+[:] Don't bet against the girl by the window in the setting sun.
+[:] I know that look because it used to be mine,
+[:] A different kind of rhythm, a different kind of line.
+[[C4]]
+[112.0:] It's not that we're shy, it's just that the world,
+[:] Is louder than the truth when it gets unfurled,
+[:] Sometimes it hurts to be the one who sees,
+[:] The ghosts hiding in the folding chairs and the trees.
+[:] But the silence is a weapon, the silence is a door,
+[:] And we're not staying quiet anymore!
+[[B5]]
+[136.0:] They don't see the fire, they just see the shade,
+[:] They're betting on the hands that are loudest in the parade.
+[:] But don't bet against the quiet ones,
+[:] Don't bet against the girl by the window in the setting sun.
+[:] I know that look because it used to be mine,
+[:] A different kind of rhythm, a different kind of line.
+[:] Yeah, we're the ones they never saw coming,
+[:] The steady hearts while they're all just running.
+[[D6]]
+[168.0:] Just a girl by the window,
+[:] But she knows more than you know.
+[:] (More than you know...)
+[:] Yeah.
+
+mosic: 4.5
+bpm: 120.0
+duration_secs: 184.0
+good_crop: 1.0
+[[A0]]
+[0.0:] A mid-tempo, melodic Guitar Pop sound characteristic of late-1990s Indie Pop and Power Pop. The segment is anchored by two crisp electric guitars playing bright, clean rhythms with a slight 'jangle' texture, interlocking with a lightly supportive acoustic guitar layer. The rhythm is driven by a punchy, melodic electric bass guitar and tight live drums featuring a snappy snare and a crisp ride cymbal. The instrumentation creates a glossy but grounded texture, avoiding arena-rock excess in favor of a clear, band-driven sound. The vocal performance features a female lead with a clear, resonant timbre, delivering lyrics in a self-aware, sardonic style that feels both astute and personable. The melodic structure is agile and conversational, weaving through concrete social details with ease. The interaction between the dry, upfront vocals and the chime-like guitars creates a feeling of sophisticated observation. The atmosphere is that of a bright, slightly sterile social gathering, evocative of fluorescent lights and everyday motion.
+[[B1]]
+[32.0:] An anthemic and polished late-1990s Guitar Pop chorus defined by its bright, singable hooks. The segment is anchored by layered electric guitars that shift from rhythmic picking to wide-open, shimmering power chords, supported by the warm resonance of an acoustic guitar. The rhythm section steps up in energy, with the drummer moving to the crash cymbals for emphasis while the melodic bass guitar provides a strong, driving foundation. The instrumentation is glossy and full-frequency, typical of radio-friendly Power Pop. The vocal performance features the female lead with a clear, resonant timbre, lifting her range for a memorable, defiant melody. Her delivery is resilient and warm, balancing empathy and confidence. The melodic structure is catchy and concise, with sharp upward lifts that create a sense of emotional opening. The interaction between the soaring vocals and the driving rhythm provides a triumphant contrast to the grounded verse. The atmosphere is empowering and bright, evoking the feeling of a sun-drenched road trip with the windows down.
+[[A2]]
+[56.0:] A mid-tempo, melodic Guitar Pop sound characteristic of late-1990s Indie Pop and Power Pop. The segment is anchored by two crisp electric guitars playing bright, clean rhythms with a slight 'jangle' texture, interlocking with a lightly supportive acoustic guitar layer. The rhythm is driven by a punchy, melodic electric bass guitar and tight live drums featuring a snappy snare and a crisp ride cymbal. The instrumentation remains glossy and grounded, with a band-driven focus that feels human and honest. The vocal performance features a female lead with a clear, resonant timbre, delivering lyrics in a self-aware, sardonic style. The melodic structure is agile and conversational, focusing on personal history. The interaction between the rhythmic guitars and the vocal phrasing creates a sense of casual confidence. The atmosphere is reflective and observant, moving from the current setting to a shared history of being underestimated.
+[[B3]]
+[88.0:] An anthemic and polished late-1990s Guitar Pop chorus defined by its bright, singable hooks. The segment is anchored by layered electric guitars that shift from rhythmic picking to wide-open, shimmering power chords, supported by the warm resonance of an acoustic guitar. The rhythm section is active and punchy, with the drummer moving to the crash cymbals for emphasis while the melodic bass guitar provides a strong, driving foundation. The instrumentation is glossy and full-frequency, typical of radio-friendly Power Pop. The vocal performance features the female lead with a clear, resonant timbre, lifting her range for a memorable, defiant melody. Her delivery is resilient and warm, balancing empathy and confidence. The melodic structure is catchy and concise, with sharp upward lifts that create a sense of emotional opening. The interaction between the soaring vocals and the driving rhythm provides a triumphant contrast to the grounded verse. The atmosphere is empowering and bright, evoking the feeling of a sun-drenched road trip with the windows down.
+[[C4]]
+[112.0:] An emotional pivot in a late-1990s Guitar Pop structure, defined by a shift toward vulnerability. The segment is anchored by the sudden stripping back of the drums, leaving a syncopated bass line and a steady, rhythmic acoustic guitar strum. The rhythm is more sparse and feels suspended, before building in intensity with a rolling snare fill. The instrumentation features a single electric guitar playing long, sustaining notes with a slight delay effect, adding an ethereal layer to the glossy production. The vocal performance features the female lead with a clear, resonant timbre, shedding the sarcasm for a moment of direct, emotionally warm vulnerability. The melodic structure is more fluid and less repetitive, exploring a slightly melancholic harmony before resolving back to the home key. The atmosphere is intimate and honest, evoking the feeling of a quiet confession in a crowded room.
+[[B5]]
+[136.0:] An anthemic and polished late-1990s Guitar Pop chorus, serving as the song's emotional climax. The segment is anchored by a thick wall of electric guitars playing shimmering power chords, doubled by an acoustic guitar for a rich, organic feel. The rhythm section is at its peak energy, with the drummer utilizing a driving eighth-note pattern on the ride cymbal and a loud, sharp snare on beats two and four. The instrumentation is glossy and professional, characteristic of late-90s radio anthems. The vocal performance features the female lead with a clear, resonant timbre, delivering the melody with maximum confidence and emotional weight, including ad-libs in the gaps. The melodic structure is highly repetitive and catchy, designed for maximum impact. The interaction between the full band and the soaring vocals creates a celebratory and invincible atmosphere. The atmosphere is triumphant and sunny, like a hard-won victory.
+[[D6]]
+[168.0:] A fading, melodic Guitar Pop outro defined by a sense of resolution. The segment is anchored by a repeating electric guitar riff that is catchy and bright, slowly being filtered down in volume. The rhythm section maintains a steady, bouncy groove before the drums drop out, leaving only the melodic bass guitar and the final ring of an acoustic guitar. The instrumentation is glossy and clean, with the layers gradually peeling away to leave the core rhythm. The vocal performance features the female lead singing a short, final refrain with a slightly sardonic but warm tone, ending with a soft hum. The melodic structure brings the song back to its home key comfortably. The atmosphere is peaceful and cool, suggesting the end of the gathering and a walk into the night.

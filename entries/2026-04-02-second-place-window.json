@@ -1,0 +1,11 @@
+{
+  "date": "2026-04-02",
+  "display_date": "April 2, 2026",
+  "title": "Second Place Window",
+  "caption": "A sharp, melodic late-90s guitar-pop song about noticing the overlooked girl in the room and recognizing your own reflection in her.",
+  "audio": "2026-04-02-second-place-window.mp3",
+  "image": "2026-04-02-second-place-window.png",
+  "lyrics": "2026-04-02-second-place-window.txt",
+  "model": "lyria-3-pro-preview",
+  "prompt": "smart late-90s female-fronted guitar pop-rock with crisp electric guitars, bounce, bittersweet hooks, and empathetic underdog attitude"
+}
