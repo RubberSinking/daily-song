@@ -57,7 +57,7 @@ if (is_dir($entries_dir)) {
 usort($entries, fn($a,$b) => strcmp($b['date'], $a['date']));
 
 $seeds = [];
-$seeds_path = getenv('HOME') . '/projects/scripts/SONGS.yaml';
+$seeds_path = __DIR__ . '/SONGS.yaml';
 if (file_exists($seeds_path)) {
     $yaml = file_get_contents($seeds_path);
     if (preg_match_all('/- title: "([^"]+)"\s+artist: "([^"]+)"\s+description: "([\s\S]*?)"(?=\n\s*- title:|\z)/', $yaml, $matches, PREG_SET_ORDER)) {
