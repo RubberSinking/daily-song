@@ -1,0 +1,12 @@
+{
+  "date": "2026-04-03",
+  "display_date": "April 3, 2026",
+  "title": "Static on the Rearview",
+  "caption": "A polished late-90s breakup pop-rock song where clarity, anger, and humiliation all hit at once while the singer keeps driving.",
+  "audio": "2026-04-03-static-on-the-rearview.mp3",
+  "image": "2026-04-03-static-on-the-rearview.png",
+  "lyrics": "2026-04-03-static-on-the-rearview.txt",
+  "model": "lyria-3-pro-preview",
+  "prompt": "polished late-90s female-led pop-rock with cathartic breakup hooks, brisk acoustic strumming, and lucid emotional bruising",
+  "prompt_file": "2026-04-03-static-on-the-rearview.txt"
+}
