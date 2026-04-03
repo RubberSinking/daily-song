@@ -1,0 +1,12 @@
+{
+  "date": "2026-04-03",
+  "display_date": "April 3, 2026",
+  "title": "Already Gone",
+  "caption": "A sharp, kinetic breakup song about the moment clarity cuts through heartbreak \u2014 wounded but wide awake.",
+  "audio": "2026-04-03-already-gone.mp3",
+  "image": "2026-04-03-already-gone.png",
+  "lyrics": "2026-04-03-already-gone.txt",
+  "model": "lyria-3-pro-preview",
+  "prompt": "Polished late-90s pop-rock with cool, emotionally bruised female lead vocals and a cathartic radio-ready hook",
+  "prompt_file": "2026-04-03-already-gone.txt"
+}
