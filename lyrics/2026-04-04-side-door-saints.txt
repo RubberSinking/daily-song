@@ -1,0 +1,50 @@
+[[A0]]
+[0.0:] Underneath the buzz of the fluorescent ring,
+[:] Behind the folding chairs and the styrofoam steam,
+[:] You’ve got a crooked name tag and a coffee that’s gray,
+[:] Watching the polished people holding the center of the day.
+[:] A joke that landed like a lead balloon,
+[:] Now you’re standing by the side door, looking for the moon.
+[[B1]]
+[22.9:] So let them have the microphone and the brightest light,
+[:] Let them tell the stories that are loud and white.
+[:] I’m staying in the corner where the air is clear,
+[:] I’m leaning in closer just so I can hear.
+[[C2]]
+[36.7:] Oh, I see the dignity the others miss,
+[:] It’s a quieter kind of courage, a better kind of bliss.
+[:] In the casserole steam and the hall’s dusty glow,
+[:] I’m on your side, and I wanted you to know.
+[:] (I’m on your side)
+[[A3]]
+[54.9:] The person with the program is talking way too fast,
+[:] Making sure the attention is built to last.
+[:] But your eyes are looking at the patterns on the floor,
+[:] Seeing all the things that the ego-boosters ignore.
+[:] The casserole is cooling, the clock is ticking slow,
+[:] You’ve got a whole galaxy where those people never go.
+[[B4]]
+[77.8:] So let them have the microphone and the brightest light,
+[:] Let them tell the stories that are loud and white.
+[:] I’m staying in the corner where the air is clear,
+[:] I’m leaning in closer just so I can hear.
+[[C5]]
+[91.6:] Oh, I see the dignity the others miss,
+[:] It’s a quieter kind of courage, a better kind of bliss.
+[:] In the casserole steam and the hall’s dusty glow,
+[:] I’m on your side, and I wanted you to know.
+[:] (Yeah, I wanted you to know)
+[[D6]]
+[109.8:] It’s not a grand parade, it’s not a winning speech,
+[:] It’s the hidden little truths the loud can never reach.
+[:] You don't need a witness, but you’ve got one here,
+[:] Moving past the chatter, moving past the fear.
+[[C7]]
+[123.6:] Oh, I see the dignity the others miss,
+[:] It’s a quieter kind of courage, a better kind of bliss.
+[:] In the casserole steam and the hall’s dusty glow,
+[:] I’m on your side, and I wanted you to know.
+[:] I’m on your side, and I wanted you to know!
+[[E8]]
+[146.5:] I’m on your side...
+[:] (Just between you and me.)

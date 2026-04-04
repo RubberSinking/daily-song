@@ -1,0 +1,12 @@
+{
+  "date": "2026-04-04",
+  "display_date": "April 4, 2026",
+  "title": "Side Door Saints",
+  "caption": "A bright, literate guitar-pop song about sticking up for the odd one out and finding grace in the margins.",
+  "audio": "2026-04-04-side-door-saints.mp3",
+  "image": "2026-04-04-side-door-saints.png",
+  "lyrics": "2026-04-04-side-door-saints.txt",
+  "model": "lyria-3-pro-preview",
+  "prompt": "witty mid-90s jangly acoustic alt-pop with warm female vocals, nimble guitars, and affectionate underdog energy",
+  "prompt_file": "2026-04-04-side-door-saints.txt"
+}
