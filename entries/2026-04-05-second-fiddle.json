@@ -1,0 +1,12 @@
+{
+  "date": "2026-04-05",
+  "display_date": "April 5, 2026",
+  "title": "Second Fiddle",
+  "caption": "A witty tribute to the people who show up quietly and do the actual work, written in the style of smart 1990s alternative-pop.",
+  "audio": "2026-04-05-second-fiddle.mp3",
+  "image": "2026-04-05-second-fiddle.png",
+  "lyrics": "2026-04-05-second-fiddle.txt",
+  "model": "lyria-3-pro-preview",
+  "prompt": "Smart mid-1990s alternative-pop with witty, observant female vocals, crisp acoustic guitar, jangly electric fills, and a mischievous but warm tone celebrating overlooked people.",
+  "prompt_file": "2026-04-05-second-fiddle.txt"
+}

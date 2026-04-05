@@ -1,0 +1,12 @@
+{
+  "date": "2026-04-05",
+  "display_date": "April 5, 2026",
+  "title": "Mirrors",
+  "caption": "A tender song about watching someone you love come undone, told with compassion and concrete detail.",
+  "audio": "2026-04-05-mirrors.mp3",
+  "image": "2026-04-05-mirrors.png",
+  "lyrics": "2026-04-05-mirrors.txt",
+  "model": "lyria-3-pro-preview",
+  "prompt": "Tender melancholy singer-songwriter pop with emotionally revealing female vocals, acoustic guitar spine, restrained instrumentation that leaves air around the lyric, and honest portrayal of quiet unraveling through intimate detail.",
+  "prompt_file": "2026-04-05-mirrors.txt"
+}
