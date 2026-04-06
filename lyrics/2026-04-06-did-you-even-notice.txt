@@ -1,0 +1,48 @@
+[[A0]]
+[[B1]]
+[12.0:] Is the coffee getting colder in the pot?
+[:] Are we hiding something that we haven’t got?
+[:] You’re looking at the wall like it’s a map,
+[:] Have we fallen in a quiet little trap?
+[:] I’m asking every shadow what it knows,
+[:] Do you feel the distance where it grows?
+[[C2]]
+[36.0:] Can we bridge the space that’s in between!
+[:] Do you remember everything we’ve been!
+[:] Is this the part where we just drift away!
+[:] Or is there something left for us to say!
+[:] I’m reaching out but I can’t find your hand!
+[:] Is there a part of me you understand!
+[:] (Is there a part of me you understand?)
+[[B3]]
+[60.0:] The windows rattle in the evening wind,
+[:] Tell me where exactly did the light begin?
+[:] I’m counting all the cracks along the floor,
+[:] Do you even want to look for something more?
+[:] Your silence is a heavy kind of stone,
+[:] Are we more together, or alone?
+[[C4]]
+[84.0:] Can we bridge the space that’s in between!
+[:] Do you remember everything we’ve been!
+[:] Is this the part where we just drift away!
+[:] Or is there something left for us to say!
+[:] I’m reaching out but I can’t find your hand!
+[:] Is there a part of me you understand!
+[:] (Is there a part of me you understand?)
+[[D5]]
+[108.0:] Are we just two ghosts inside a house?
+[:] Two separate minds, a quiet, fading spouse?
+[:] Tell me the truth, even if it hurts to hear,
+[:] Is there any way to make the static clear?
+[[C6]]
+[127.2:] Can we bridge the space that’s in between!
+[:] Do you remember everything we’ve been!
+[:] Is this the part where we just drift away!
+[:] Or is there something left for us to say!
+[:] I’m reaching out but I can’t find your hand!
+[:] Is there a part of me you understand!
+[:] (Is there a part of me you understand?)
+[[E7]]
+[151.2:] Is there a part of me you understand?
+[:] (Understand...)
+[:] (Mmm-mmm...)

@@ -1,0 +1,12 @@
+{
+  "date": "2026-04-06",
+  "display_date": "April 6, 2026",
+  "title": "Did You Even Notice",
+  "caption": "A woman wonders if her partner sees her quietly pulling away.",
+  "audio": "2026-04-06-did-you-even-notice.mp3",
+  "image": "2026-04-06-did-you-even-notice.png",
+  "lyrics": "2026-04-06-did-you-even-notice.txt",
+  "model": "lyria-3-pro-preview",
+  "prompt": "Reflective mid-tempo acoustic alt-pop with a searching female vocal, acoustic guitar blooming into electric textures, emotionally restless but intimate",
+  "prompt_file": "2026-04-06-did-you-even-notice.txt"
+}
