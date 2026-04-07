@@ -1,4 +1,26 @@
 <?php
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['date']) && isset($_POST['note'])) {
+    $date = basename($_POST['date']);
+    $note = $_POST['note'];
+    $entries_dir = __DIR__ . '/entries/';
+    $found = false;
+    foreach (glob($entries_dir . '*.json') as $file) {
+        $data = json_decode(file_get_contents($file), true);
+        if ($data && isset($data['date']) && $data['date'] === $date) {
+            if (empty($note)) {
+                unset($data['note']);
+            } else {
+                $data['note'] = $note;
+            }
+            file_put_contents($file, json_encode($data, JSON_PRETTY_PRINT));
+            $found = true;
+            break;
+        }
+    }
+    echo json_encode(['success' => $found]);
+    exit;
+}
+
 if (!empty($_GET['lyrics'])) {
     $slug = basename($_GET['lyrics']);
     $path = __DIR__ . '/lyrics/' . $slug;
@@ -51,6 +73,7 @@ if (is_dir($entries_dir)) {
     foreach (glob($entries_dir . '*.json') as $file) {
         $data = json_decode(file_get_contents($file), true);
         if (!$data || empty($data['date']) || empty($data['title']) || empty($data['audio'])) continue;
+        $data['file_path'] = $file;
         $entries[] = $data;
     }
 }
@@ -88,9 +111,9 @@ body{margin:0;font-family:Inter,sans-serif;background:linear-gradient(180deg,#1f
 .save-note{background:#93c5fd;color:#0f172a}
 .del-note{background:transparent;color:#f87171}
 </style></head><body><div class="wrap"><div class="hero"><div class="eyebrow">Daily tiny record label</div><h1>Daily Song with Chloe</h1><p class="sub">A daily original song archive: little folk-pop postcards, reflective sketches, and the occasional oddball melody.</p><div class="hero-links"><a href="#" id="open-seeds">Song Seeds</a><a href="#" id="open-radio">Radio</a><a href="#" id="show-only-liked">Show Only Liked</a></div></div><?php if (empty($entries)): ?><div class="empty">No songs yet. The studio is still tuning the guitar.</div><?php else: ?><?php foreach ($entries as $i => $entry): ?><article class="entry" data-id="<?= htmlspecialchars($entry['date']) ?>"><div class="meta"><span class="date"><?= htmlspecialchars($entry['display_date'] ?? $entry['date']) ?></span><button class="like-btn" data-id="<?= htmlspecialchars($entry['date']) ?>">♥</button></div><h2 class="title"><?= htmlspecialchars($entry['title']) ?> <button class="note-btn" data-date="<?= htmlspecialchars($entry['date']) ?>" title="Add note">📝</button></h2><p class="caption"><?= htmlspecialchars($entry['caption'] ?? '') ?></p><audio id="audio-<?= $i ?>" controls preload="none"><source src="audio/<?= htmlspecialchars($entry['audio']) ?>">Your browser does not support audio.</audio><p class="links"><?php if (!empty($entry['lyrics'])): ?><a href="#" class="open-overlay" data-kind="lyrics" data-title="<?= htmlspecialchars($entry['title'], ENT_QUOTES) ?> — Lyrics" data-src="lyrics/<?= htmlspecialchars($entry['lyrics']) ?>">Read lyrics</a><?php endif; ?><?php if (!empty($entry['prompt_file'])): ?> · <a href="#" class="open-overlay" data-kind="prompt" data-title="<?= htmlspecialchars($entry['title'], ENT_QUOTES) ?> — Prompt" data-src="prompts/<?= htmlspecialchars($entry['prompt_file']) ?>">Prompt</a><?php endif; ?><?php if (!empty($entry['model'])): ?> · <span>Model: <?= htmlspecialchars($entry['model']) ?></span><?php endif; ?></p></article><?php endforeach; ?><?php endif; ?></div><div class="overlay" id="overlay"><div class="overlay-card"><div class="overlay-head"><div class="overlay-title" id="overlay-title"></div><button class="overlay-close" id="overlay-close">&times;</button></div><div class="overlay-body" id="overlay-body"></div></div></div><div class="overlay" id="seeds-overlay"><div class="overlay-card seeds"><div class="overlay-head"><div class="overlay-title">Song Seeds</div><button class="overlay-close" id="seeds-close">&times;</button></div><div class="overlay-body prompt"><div class="seeds-list"><?php foreach ($seeds as $idx => $seed): ?><div class="seed" id="seed-<?= $idx ?>"><div class="seed-top"><div><div class="seed-title"><?= htmlspecialchars($seed['title']) ?></div><div class="seed-artist"><?= htmlspecialchars($seed['artist']) ?></div></div><button class="seed-toggle" data-seed="seed-<?= $idx ?>">Show description</button></div><div class="seed-desc"><?= htmlspecialchars($seed['description']) ?></div></div><?php endforeach; ?></div></div></div></div><div class="overlay" id="radio-overlay"><div class="overlay-card"><div class="overlay-head"><div class="overlay-title">Daily Song Radio</div><button class="overlay-close" id="radio-close">&times;</button></div><div class="overlay-body prompt"><div class="radio-layout"><div><div id="radio-caption" style="color:#cbd5e1;margin-top:10px;line-height:1.6;"></div></div><div class="radio-mobile-meta"><div id="radio-now" style="font-weight:600;font-size:1.05rem;margin-bottom:10px;">Starting radio…</div><div id="radio-meta" style="color:#94a3b8;margin-bottom:12px;">Shuffling the archive</div><div id="radio-links" class="radio-links"></div><audio id="radio-audio" controls autoplay preload="none" style="width:100%;margin-bottom:12px;"></audio><button id="radio-next" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);color:#fff;padding:10px 14px;border-radius:10px;cursor:pointer;">Skip to next</button></div></div></div></div></div><script>
-const tracks = <?php echo json_encode(array_map(fn($e) => ['title' => $e['title'], 'date' => ($e['display_date'] ?? $e['date']), 'audio' => 'audio/' . $e['audio'], 'image' => (!empty($e['image']) ? 'images/' . $e['image'] : ''), 'caption' => ($e['caption'] ?? ''), 'lyrics' => (!empty($e['lyrics']) ? 'lyrics/' . $e['lyrics'] : ''), 'prompt' => (!empty($e['prompt_file']) ? 'prompts/' . $e['prompt_file'] : ''), 'date_id' => $e['date']], $entries)); ?>;
+const tracks = <?php echo json_encode(array_map(fn($e) => ['title' => $e['title'], 'date' => ($e['display_date'] ?? $e['date']), 'audio' => 'audio/' . $e['audio'], 'image' => (!empty($e['image']) ? 'images/' . $e['image'] : ''), 'caption' => ($e['caption'] ?? ''), 'lyrics' => (!empty($e['lyrics']) ? 'lyrics/' . $e['lyrics'] : ''), 'prompt' => (!empty($e['prompt_file']) ? 'prompts/' . $e['prompt_file'] : ''), 'date_id' => $e['date'], 'note' => ($e['note'] ?? '')], $entries)); ?>;
 let liked = JSON.parse(localStorage.getItem('likedSongs') || '[]');
-const songNotes = JSON.parse(localStorage.getItem('songNotes') || '{}');
+const songNotes = tracks.reduce((acc, t) => { if(t.note) acc[t.date_id] = t.note; return acc; }, JSON.parse(localStorage.getItem('songNotes') || '{}'));
 const render = () => {
     document.querySelectorAll('.entry').forEach(el => {
         const date = el.dataset.id;
@@ -117,18 +140,24 @@ document.querySelectorAll('.note-btn').forEach(btn => {
         overlayBody.className = 'overlay-body';
         overlayBody.innerHTML = `<input type="text" class="note-input" id="note-val" value="${current}" placeholder="Add a note..."><div class="note-actions"><button class="save-note" id="save-note">Save</button><button class="del-note" id="del-note">Delete</button></div>`;
         overlay.classList.add('open');
-        document.getElementById('save-note').addEventListener('click', () => {
+        document.getElementById('save-note').addEventListener('click', async () => {
             const val = document.getElementById('note-val').value;
-            if(val) songNotes[date] = val; else delete songNotes[date];
-            localStorage.setItem('songNotes', JSON.stringify(songNotes));
-            render();
-            closeOverlay();
+            const r = await fetch(window.location.href, { method: 'POST', body: new URLSearchParams({date, note: val}) });
+            if((await r.json()).success) {
+                if(val) songNotes[date] = val; else delete songNotes[date];
+                localStorage.setItem('songNotes', JSON.stringify(songNotes));
+                render();
+                closeOverlay();
+            }
         });
-        document.getElementById('del-note').addEventListener('click', () => {
-            delete songNotes[date];
-            localStorage.setItem('songNotes', JSON.stringify(songNotes));
-            render();
-            closeOverlay();
+        document.getElementById('del-note').addEventListener('click', async () => {
+            const r = await fetch(window.location.href, { method: 'POST', body: new URLSearchParams({date, note: ''}) });
+            if((await r.json()).success) {
+                delete songNotes[date];
+                localStorage.setItem('songNotes', JSON.stringify(songNotes));
+                render();
+                closeOverlay();
+            }
         });
     });
 });
