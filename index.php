@@ -234,7 +234,13 @@ function playRadioIndex(){ if(!radioQueue.length) return; if(radioIndex >= radio
             if(val) songNotes[t.date_id] = val; else delete songNotes[t.date_id];
             localStorage.setItem('songNotes', JSON.stringify(songNotes));
             render();
-            playRadioIndex();
+            // Update the note display in the radio UI directly
+            const radioNoteDisplay = document.getElementById('radio-note-display');
+            if (val) {
+                radioNoteDisplay.innerHTML = `<p class="song-note">Note: ${val}</p>`;
+            } else {
+                radioNoteDisplay.innerHTML = '';
+            }
             closeOverlay();
         }
     });
@@ -244,7 +250,9 @@ function playRadioIndex(){ if(!radioQueue.length) return; if(radioIndex >= radio
             delete songNotes[t.date_id];
             localStorage.setItem('songNotes', JSON.stringify(songNotes));
             render();
-            playRadioIndex();
+            // Update the note display in the radio UI directly
+            const radioNoteDisplay = document.getElementById('radio-note-display');
+            radioNoteDisplay.innerHTML = '';
             closeOverlay();
         }
     });
