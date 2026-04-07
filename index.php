@@ -161,7 +161,7 @@ document.querySelectorAll('.note-btn').forEach(btn => {
         });
     });
 });
-let liked = JSON.parse(localStorage.getItem('likedSongs') || '[]');
+/* Removed duplicate 'liked' declaration */
 const updateLikes = () => {
   document.querySelectorAll('.like-btn').forEach(btn => {
     btn.classList.toggle('liked', liked.includes(btn.dataset.id));
@@ -213,7 +213,49 @@ function buildRadioQueue(){ radioQueue = shuffle(tracks); radioIndex = 0; }
 function playRadioIndex(){ if(!radioQueue.length) return; if(radioIndex >= radioQueue.length){ buildRadioQueue(); radioMeta.textContent='Reshuffled the archive'; }
   const t = radioQueue[radioIndex]; radioAudio.src = t.audio; radioNow.textContent = t.title; radioMeta.textContent = `${t.date} · ${radioIndex+1} of ${radioQueue.length} in current shuffle`; 
   const note = JSON.parse(localStorage.getItem('songNotes') || '{}')[t.date_id] || '';
-  radioCaption.innerHTML = (t.caption || '') + (note ? `<p class="song-note">Note: ${note}</p>` : '');
+  const radioNoteEl = document.createElement('div');
+  radioNoteEl.id = 'radio-note-display';
+  radioNoteEl.innerHTML = note ? `<p class="song-note">Note: ${note}</p>` : '';
+  
+  const radioEditBtn = document.createElement('button');
+  radioEditBtn.className = 'note-btn';
+  radioEditBtn.textContent = '📝';
+  radioEditBtn.title = 'Edit note';
+  radioEditBtn.addEventListener('click', () => {
+    const current = songNotes[t.date_id] || '';
+    overlayTitle.textContent = 'Edit Note';
+    overlayBody.className = 'overlay-body';
+    overlayBody.innerHTML = `<input type="text" class="note-input" id="note-val" value="${current}" placeholder="Add a note..."><div class="note-actions"><button class="save-note" id="save-note">Save</button><button class="del-note" id="del-note">Delete</button></div>`;
+    overlay.classList.add('open');
+    document.getElementById('save-note').addEventListener('click', async () => {
+        const val = document.getElementById('note-val').value;
+        const r = await fetch(window.location.href, { method: 'POST', body: new URLSearchParams({date: t.date_id, note: val}) });
+        if((await r.json()).success) {
+            if(val) songNotes[t.date_id] = val; else delete songNotes[t.date_id];
+            localStorage.setItem('songNotes', JSON.stringify(songNotes));
+            render();
+            playRadioIndex();
+            closeOverlay();
+        }
+    });
+    document.getElementById('del-note').addEventListener('click', async () => {
+        const r = await fetch(window.location.href, { method: 'POST', body: new URLSearchParams({date: t.date_id, note: ''}) });
+        if((await r.json()).success) {
+            delete songNotes[t.date_id];
+            localStorage.setItem('songNotes', JSON.stringify(songNotes));
+            render();
+            playRadioIndex();
+            closeOverlay();
+        }
+    });
+  });
+
+  radioNow.appendChild(radioEditBtn);
+  const existingNote = document.getElementById('radio-note-display');
+  if (existingNote) existingNote.replaceWith(radioNoteEl);
+  else radioNow.after(radioNoteEl);
+
+  radioCaption.textContent = t.caption;
   if(t.image){radioImage.src=t.image; radioImage.style.display='block';}else{radioImage.style.display='none'; radioImage.src='';} radioLinks.innerHTML = (t.lyrics ? `<a href="#" class="radio-open" data-kind="lyrics" data-title="${t.title} — Lyrics" data-src="${t.lyrics}">Lyrics</a>` : '') + (t.prompt ? ` · <a href="#" class="radio-open" data-kind="prompt" data-title="${t.title} — Prompt" data-src="${t.prompt}">Prompt</a>` : ''); radioLinks.querySelectorAll('.radio-open').forEach(a=>a.addEventListener('click', async e=>{ e.preventDefault(); overlayTitle.textContent=a.dataset.title||''; overlayBody.className='overlay-body '+(a.dataset.kind||''); overlayBody.textContent='Loading…'; overlay.classList.add('open'); try{ const r=await fetch(a.dataset.src,{cache:'no-store'}); const txt=await r.text(); overlayBody.textContent=txt; } catch(err){ overlayBody.textContent='Could not load.'; } })); radioAudio.play(); }
 document.getElementById('open-radio').addEventListener('click',e=>{ e.preventDefault(); radioOverlay.classList.add('open'); if(!radioQueue.length) buildRadioQueue(); playRadioIndex(); });
 document.getElementById('radio-close').addEventListener('click',()=>{ radioOverlay.classList.remove('open'); radioAudio.pause(); });
