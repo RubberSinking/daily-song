@@ -1,12 +1,13 @@
 {
-  "date": "2026-04-03",
-  "display_date": "April 3, 2026",
-  "title": "Almost Told You So",
-  "caption": "A luminous 90s-inspired acoustic pop song about the tender courage of keeping hope close.",
-  "audio": "2026-04-03-almost-told-you-so.mp3",
-  "image": "2026-04-03-almost-told-you-so.png",
-  "lyrics": "2026-04-03-almost-told-you-so.txt",
-  "model": "lyria-3-pro-preview",
-  "prompt": "Intimate 90s acoustic singer-songwriter pop with hopeful yearning and a warm female lead vocal",
-  "prompt_file": "2026-04-03-almost-told-you-so.txt"
+    "date": "2026-04-03",
+    "display_date": "April 3, 2026",
+    "title": "Almost Told You So",
+    "caption": "A luminous 90s-inspired acoustic pop song about the tender courage of keeping hope close.",
+    "audio": "2026-04-03-almost-told-you-so.mp3",
+    "image": "2026-04-03-almost-told-you-so.png",
+    "lyrics": "2026-04-03-almost-told-you-so.txt",
+    "model": "lyria-3-pro-preview",
+    "prompt": "Intimate 90s acoustic singer-songwriter pop with hopeful yearning and a warm female lead vocal",
+    "prompt_file": "2026-04-03-almost-told-you-so.txt",
+    "note": "I'm not angry, I'm just...clear \/ I'm not wounded, I'm just wide awake"
 }

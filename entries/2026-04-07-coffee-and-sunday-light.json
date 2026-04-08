@@ -1,12 +1,13 @@
 {
-  "date": "2026-04-07",
-  "display_date": "April 7, 2026",
-  "title": "Coffee and Sunday Light",
-  "caption": "A gentle, sun-drenched acoustic pop track capturing the quiet peace of a slow morning.",
-  "audio": "2026-04-07-coffee-and-sunday-light.mp3",
-  "image": "2026-04-07-coffee-and-sunday-light.png",
-  "lyrics": "2026-04-07-coffee-and-sunday-light.txt",
-  "model": "lyria-3-pro-preview",
-  "prompt": "Relaxed acoustic pop with jazzy, sunlit warmth, brushed drums, and intimate female vocals.",
-  "prompt_file": "2026-04-07-coffee-and-sunday-light.txt"
+    "date": "2026-04-07",
+    "display_date": "April 7, 2026",
+    "title": "Coffee and Sunday Light",
+    "caption": "A gentle, sun-drenched acoustic pop track capturing the quiet peace of a slow morning.",
+    "audio": "2026-04-07-coffee-and-sunday-light.mp3",
+    "image": "2026-04-07-coffee-and-sunday-light.png",
+    "lyrics": "2026-04-07-coffee-and-sunday-light.txt",
+    "model": "lyria-3-pro-preview",
+    "prompt": "Relaxed acoustic pop with jazzy, sunlit warmth, brushed drums, and intimate female vocals.",
+    "prompt_file": "2026-04-07-coffee-and-sunday-light.txt",
+    "note": "test34"
 }
