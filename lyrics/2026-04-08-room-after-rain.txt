@@ -1,0 +1,32 @@
+[[A0]]
+[[B1]]
+[15.0:] Rain on the glass is the only sound I've made,
+[:] A cold mug on the table, the steam has long since frayed.
+[:] The unmade bed is waiting like a ghost I haven't kept,
+[:] I'm counting all the secrets that I held before I slept.
+[:] My phone is face-down on the rug, a dark rectangle of glass,
+[:] Watching all the minutes and the heavy shadows pass.
+[[C2]]
+[60.0:] It's a fragile, honest ache when the light begins to thin,
+[:] Trying not to fall apart when the night is closing in.
+[:] Nobody is watching, but the walls can see the strain,
+[:] Just a quiet room in darkness, trying to outrun the pain.
+[:] (Trying to outrun the pain.)
+[[B3]]
+[90.0:] The keys are in the bowl, a heavy silver weight,
+[:] I'm practicing the stories that I'll tell them by the gate.
+[:] I haven't moved an inch, I'm just breathing in the dust,
+[:] In a house that's built on silence and a heart that's lost its trust.
+[:] One foot is still in the hallway, the other's in the deep,
+[:] Just trying not to shatter while the rest of them are asleep.
+[[C4]]
+[135.0:] It's a fragile, honest ache when the light begins to thin,
+[:] Trying not to fall apart when the night is closing in.
+[:] Nobody is watching, but the walls can see the strain,
+[:] Just a quiet room in darkness, trying to outrun the pain.
+[:] (Trying to outrun the pain.)
+[[D5]]
+[165.0:] Nobody's watching...
+[:] (Nobody's watching...)
+[:] Just me and the ache.
+[:] (Hushed sigh)

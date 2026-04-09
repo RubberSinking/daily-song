@@ -1,0 +1,12 @@
+{
+  "date": "2026-04-08",
+  "display_date": "April 8, 2026",
+  "title": "Room After Rain",
+  "caption": "A hushed, intimate song about holding yourself together when the day goes quiet.",
+  "audio": "2026-04-08-room-after-rain.mp3",
+  "image": "2026-04-08-room-after-rain.png",
+  "lyrics": "2026-04-08-room-after-rain.txt",
+  "model": "lyria-3-pro-preview",
+  "prompt": "Tender melancholy singer-songwriter pop with close female vocals and sparse acoustic arrangement",
+  "prompt_file": "2026-04-08-room-after-rain.txt"
+}
