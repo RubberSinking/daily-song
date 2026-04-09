@@ -1,0 +1,48 @@
+[[A0]]
+[[B1]]
+[16.0:] The tea has gone cold on the coaster
+[:] The streetlights are painting the hall
+[:] I’m tracing the shadows of ghosts here
+[:] Just watching them climb up the wall
+[:] I keep hearing the things I should not have
+[:] And skipping the things I should say
+[:] The keys that I had in my pocket
+[:] Just locked the wrong door on the way.
+[[B2]]
+[48.0:] I tell myself timing is cruel now
+[:] Or that we were just never in sync
+[:] But shadows don’t follow the rules now
+[:] When you’re standing right there on the brink.
+[[C3]]
+[64.0:] And it’s midnight again
+[:] In the place where the chance could have been
+[:] Just a breath, just a word
+[:] The most beautiful thing I never heard
+[:] Now the room is too wide
+[:] With nowhere for longing to hide
+[:] No, the room is too wide
+[:] With nowhere for longing to hide.
+[[A4]]
+[[B5]]
+[96.0:] The chair in the corner is empty
+[:] I’ve memorized every small grain
+[:] The silence is heavy and tempting
+[:] To try and forget all the pain
+[:] But I see how you looked when you lingered
+[:] By the door with the light on your face
+[:] I’m still reaching out with a finger
+[:] For a warmth I can no longer trace.
+[[C6]]
+[128.0:] And it’s midnight again
+[:] In the place where the chance could have been
+[:] Just a breath, just a word
+[:] The most beautiful thing I never heard
+[:] Now the room is too wide
+[:] With nowhere for longing to hide
+[:] No, the room is too wide
+[:] With nowhere for longing to hide.
+[[D7]]
+[144.0:] Midnight again...
+[:] (Just a breath)
+[:] (In the dark)
+[:] (Mmm-mmm).

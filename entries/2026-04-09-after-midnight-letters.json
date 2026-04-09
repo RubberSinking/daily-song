@@ -1,0 +1,12 @@
+{
+  "date": "2026-04-09",
+  "display_date": "April 9, 2026",
+  "title": "After Midnight Letters",
+  "caption": "An intimate late-night ballad about replaying a missed chance in the quiet after midnight.",
+  "audio": "2026-04-09-after-midnight-letters.mp3",
+  "image": "2026-04-09-after-midnight-letters.png",
+  "lyrics": "2026-04-09-after-midnight-letters.txt",
+  "model": "lyria-3-pro-preview",
+  "prompt": "intimate late-night piano-jazz-pop with warm smoky female vocals and autumnal restraint",
+  "prompt_file": "2026-04-09-after-midnight-letters.txt"
+}
