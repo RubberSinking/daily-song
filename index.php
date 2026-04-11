@@ -73,6 +73,22 @@ if (is_dir($entries_dir)) {
     foreach (glob($entries_dir . '*.json') as $file) {
         $data = json_decode(file_get_contents($file), true);
         if (!$data || empty($data['date']) || empty($data['title']) || empty($data['audio'])) continue;
+        $lyrics_text = '';
+        if (!empty($data['lyrics'])) {
+            $lyrics_path = __DIR__ . '/lyrics/' . basename($data['lyrics']);
+            if (file_exists($lyrics_path)) {
+                $lyrics_text = file_get_contents($lyrics_path) ?: '';
+            }
+        }
+        $data['lyrics_text'] = $lyrics_text;
+        $data['search_text'] = trim(implode("\n", array_filter([
+            $data['title'] ?? '',
+            $data['caption'] ?? '',
+            $data['date'] ?? '',
+            $data['display_date'] ?? '',
+            $data['note'] ?? '',
+            $lyrics_text,
+        ])));
         $data['file_path'] = $file;
         $data['entry_id'] = pathinfo($file, PATHINFO_FILENAME);
         $entries[] = $data;
@@ -102,7 +118,7 @@ if (file_exists($seeds_path)) {
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
 <style>
 body{margin:0;font-family:Inter,sans-serif;background:linear-gradient(180deg,#1f2937,#0f172a);color:#e5e7eb;line-height:1.6}
-.wrap{max-width:920px;margin:0 auto;padding:32px 20px 80px}.hero{margin-bottom:36px}.eyebrow{text-transform:uppercase;letter-spacing:.12em;font-size:.78rem;color:#f9a8d4;margin-bottom:10px}h1{margin:0 0 10px;font-size:clamp(2rem,4vw,3.4rem);line-height:1.05}.sub{max-width:720px;color:#cbd5e1;font-size:1.05rem}.hero-links{margin-top:10px;display:flex;gap:14px;flex-wrap:wrap}.hero-links a{color:#93c5fd;text-decoration:none;font-weight:500}.hero-links a:hover{text-decoration:underline}.entry{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:20px;margin:0 0 24px;box-shadow:0 18px 45px rgba(0,0,0,.25)}.meta{display:flex;gap:10px;align-items:center;margin-bottom:12px;flex-wrap:wrap}.date{color:#94a3b8;font-size:.9rem}.title{margin:0 0 8px;font-size:1.6rem}.caption{margin:0 0 16px;color:#fce7f3;font-family:Lora,serif;font-size:1.06rem}.links a,.radio-links a{color:#93c5fd;text-decoration:none;font-weight:500}.links a:hover,.radio-links a:hover{text-decoration:underline}audio{width:100%;margin:10px 0 8px}.empty{color:#94a3b8;border:1px dashed rgba(255,255,255,.15);border-radius:18px;padding:24px}.overlay{display:none;position:fixed;inset:0;background:rgba(2,6,23,.82);z-index:1000;align-items:center;justify-content:center;padding:20px}.overlay.open{display:flex}#overlay{z-index:2200}#seeds-overlay{z-index:1600}#radio-overlay{z-index:1400}.overlay-card{max-width:760px;width:100%;max-height:85vh;overflow:auto;background:linear-gradient(180deg,#111827,#0f172a);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:24px;box-shadow:0 18px 45px rgba(0,0,0,.45)}.overlay-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}.overlay-title{font-size:1.2rem;font-weight:600}.overlay-close{background:rgba(255,255,255,.08);border:none;color:#fff;font-size:1.4rem;width:38px;height:38px;border-radius:50%;cursor:pointer}.overlay-close:hover{background:rgba(255,255,255,.16)}.overlay-body{white-space:pre-wrap}.overlay-body.lyrics{font-family:Lora,serif;line-height:1.8;font-size:1.06rem;color:#e2e8f0}.overlay-body.prompt{font-family:Inter,sans-serif;line-height:1.7;color:#e2e8f0}.overlay-card.seeds{max-width:900px}.seeds-list{display:grid;gap:12px}.seed{border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:14px 16px;background:rgba(255,255,255,.03)}.seed-top{display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap}.seed-title{font-weight:600;color:#f8fafc}.seed-artist{color:#94a3b8;font-size:.95rem}.seed-toggle{color:#93c5fd;background:none;border:none;padding:0;cursor:pointer;font:inherit}.seed-desc{display:none;margin-top:10px;color:#cbd5e1;line-height:1.7}.seed.open .seed-desc{display:block}.radio-layout{display:grid;grid-template-columns:minmax(180px,240px) 1fr;gap:18px;align-items:start}.radio-links{margin:0 0 12px 0;color:#94a3b8}.radio-links a{display:inline-block}.radio-links .sep{color:#64748b;margin:0 6px}.radio-note-display{margin:0 0 12px}.radio-note-display:empty{display:none}.radio-note-display .song-note{margin-top:0}.like-btn{background:none;border:none;color:#94a3b8;cursor:pointer;font-size:1.2rem;padding:0;transition:color .2s}.like-btn.liked{color:#f472b6}@media (max-width: 640px){.radio-layout{grid-template-columns:1fr}.overlay-card{padding:18px}.radio-mobile-meta{margin-top:12px}.radio-note-display .song-note{font-size:.98rem;line-height:1.6;padding:10px 12px}}
+.wrap{max-width:920px;margin:0 auto;padding:32px 20px 80px}.hero{margin-bottom:36px}.eyebrow{text-transform:uppercase;letter-spacing:.12em;font-size:.78rem;color:#f9a8d4;margin-bottom:10px}h1{margin:0 0 10px;font-size:clamp(2rem,4vw,3.4rem);line-height:1.05}.sub{max-width:720px;color:#cbd5e1;font-size:1.05rem}.hero-links{margin-top:10px;display:flex;gap:14px;flex-wrap:wrap}.hero-links a{color:#93c5fd;text-decoration:none;font-weight:500}.hero-links a:hover{text-decoration:underline}.search-wrap{margin-top:18px;max-width:520px}.search-input{width:100%;box-sizing:border-box;padding:12px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06);color:#f8fafc;font:inherit}.search-input::placeholder{color:#94a3b8}.search-hint{margin-top:8px;color:#94a3b8;font-size:.92rem}.entry{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:20px;margin:0 0 24px;box-shadow:0 18px 45px rgba(0,0,0,.25)}.meta{display:flex;gap:10px;align-items:center;margin-bottom:12px;flex-wrap:wrap}.date{color:#94a3b8;font-size:.9rem}.title{margin:0 0 8px;font-size:1.6rem}.caption{margin:0 0 16px;color:#fce7f3;font-family:Lora,serif;font-size:1.06rem}.links a,.radio-links a{color:#93c5fd;text-decoration:none;font-weight:500}.links a:hover,.radio-links a:hover{text-decoration:underline}audio{width:100%;margin:10px 0 8px}.empty{color:#94a3b8;border:1px dashed rgba(255,255,255,.15);border-radius:18px;padding:24px}.empty.hidden{display:none}.overlay{display:none;position:fixed;inset:0;background:rgba(2,6,23,.82);z-index:1000;align-items:center;justify-content:center;padding:20px}.overlay.open{display:flex}#overlay{z-index:2200}#seeds-overlay{z-index:1600}#radio-overlay{z-index:1400}.overlay-card{max-width:760px;width:100%;max-height:85vh;overflow:auto;background:linear-gradient(180deg,#111827,#0f172a);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:24px;box-shadow:0 18px 45px rgba(0,0,0,.45)}.overlay-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}.overlay-title{font-size:1.2rem;font-weight:600}.overlay-close{background:rgba(255,255,255,.08);border:none;color:#fff;font-size:1.4rem;width:38px;height:38px;border-radius:50%;cursor:pointer}.overlay-close:hover{background:rgba(255,255,255,.16)}.overlay-body{white-space:pre-wrap}.overlay-body.lyrics{font-family:Lora,serif;line-height:1.8;font-size:1.06rem;color:#e2e8f0}.overlay-body.prompt{font-family:Inter,sans-serif;line-height:1.7;color:#e2e8f0}.overlay-card.seeds{max-width:900px}.seeds-list{display:grid;gap:12px}.seed{border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:14px 16px;background:rgba(255,255,255,.03)}.seed-top{display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap}.seed-title{font-weight:600;color:#f8fafc}.seed-artist{color:#94a3b8;font-size:.95rem}.seed-toggle{color:#93c5fd;background:none;border:none;padding:0;cursor:pointer;font:inherit}.seed-desc{display:none;margin-top:10px;color:#cbd5e1;line-height:1.7}.seed.open .seed-desc{display:block}.radio-layout{display:grid;grid-template-columns:minmax(180px,240px) 1fr;gap:18px;align-items:start}.radio-links{margin:0 0 12px 0;color:#94a3b8}.radio-links a{display:inline-block}.radio-links .sep{color:#64748b;margin:0 6px}.radio-note-display{margin:0 0 12px}.radio-note-display:empty{display:none}.radio-note-display .song-note{margin-top:0}.like-btn{background:none;border:none;color:#94a3b8;cursor:pointer;font-size:1.2rem;padding:0;transition:color .2s}.like-btn.liked{color:#f472b6}@media (max-width: 640px){.radio-layout{grid-template-columns:1fr}.overlay-card{padding:18px}.radio-mobile-meta{margin-top:12px}.radio-note-display .song-note{font-size:.98rem;line-height:1.6;padding:10px 12px}}
 .note-btn{background:none;border:none;color:#93c5fd;cursor:pointer;padding:0;font-size:1rem;margin-left:8px;opacity:0.6}
 .note-btn:hover{opacity:1}
 .song-note{font-size:.9rem;color:#e5edf8;background:rgba(147,197,253,.10);border:1px solid rgba(147,197,253,.18);padding:8px 12px;border-radius:10px;margin:8px 0 0 0;font-style:italic}
@@ -111,10 +127,105 @@ body{margin:0;font-family:Inter,sans-serif;background:linear-gradient(180deg,#1f
 .note-actions button{padding:6px 12px;cursor:pointer;border-radius:6px;border:none}
 .save-note{background:#93c5fd;color:#0f172a}
 .del-note{background:transparent;color:#f87171}
-</style></head><body><div class="wrap"><div class="hero"><div class="eyebrow">Daily tiny record label</div><h1>Daily Song with Chloe</h1><p class="sub">A daily original song archive: little folk-pop postcards, reflective sketches, and the occasional oddball melody.</p><div class="hero-links"><a href="#" id="open-seeds">Song Seeds</a><a href="#" id="open-radio">Radio</a><a href="#" id="show-only-liked">Show Only Liked</a></div></div><?php if (empty($entries)): ?><div class="empty">No songs yet. The studio is still tuning the guitar.</div><?php else: ?><?php foreach ($entries as $i => $entry): ?><article class="entry" data-id="<?= htmlspecialchars($entry['entry_id']) ?>"><div class="meta"><span class="date"><?= htmlspecialchars($entry['display_date'] ?? $entry['date']) ?></span><button class="like-btn" data-id="<?= htmlspecialchars($entry['date']) ?>">♥</button></div><h2 class="title"><?= htmlspecialchars($entry['title']) ?> <button class="note-btn" data-entry-id="<?= htmlspecialchars($entry['entry_id']) ?>" title="Add note">📝</button></h2><p class="caption"><?= htmlspecialchars($entry['caption'] ?? '') ?></p><audio id="audio-<?= $i ?>" controls preload="none"><source src="audio/<?= htmlspecialchars($entry['audio']) ?>">Your browser does not support audio.</audio><p class="links"><?php if (!empty($entry['lyrics'])): ?><a href="#" class="open-overlay" data-kind="lyrics" data-title="<?= htmlspecialchars($entry['title'], ENT_QUOTES) ?> — Lyrics" data-src="lyrics/<?= htmlspecialchars($entry['lyrics']) ?>">Read lyrics</a><?php endif; ?><?php if (!empty($entry['prompt_file'])): ?> · <a href="#" class="open-overlay" data-kind="prompt" data-title="<?= htmlspecialchars($entry['title'], ENT_QUOTES) ?> — Prompt" data-src="prompts/<?= htmlspecialchars($entry['prompt_file']) ?>">Prompt</a><?php endif; ?><?php if (!empty($entry['model'])): ?> · <span>Model: <?= htmlspecialchars($entry['model']) ?></span><?php endif; ?></p></article><?php endforeach; ?><?php endif; ?></div><div class="overlay" id="overlay"><div class="overlay-card"><div class="overlay-head"><div class="overlay-title" id="overlay-title"></div><button class="overlay-close" id="overlay-close">&times;</button></div><div class="overlay-body" id="overlay-body"></div></div></div><div class="overlay" id="seeds-overlay"><div class="overlay-card seeds"><div class="overlay-head"><div class="overlay-title">Song Seeds</div><button class="overlay-close" id="seeds-close">&times;</button></div><div class="overlay-body prompt"><div class="seeds-list"><?php foreach ($seeds as $idx => $seed): ?><div class="seed" id="seed-<?= $idx ?>"><div class="seed-top"><div><div class="seed-title"><?= htmlspecialchars($seed['title']) ?></div><div class="seed-artist"><?= htmlspecialchars($seed['artist']) ?></div></div><button class="seed-toggle" data-seed="seed-<?= $idx ?>">Show description</button></div><div class="seed-desc"><?= htmlspecialchars($seed['description']) ?></div></div><?php endforeach; ?></div></div></div></div><div class="overlay" id="radio-overlay"><div class="overlay-card"><div class="overlay-head"><div class="overlay-title">Daily Song Radio</div><button class="overlay-close" id="radio-close">&times;</button></div><div class="overlay-body prompt"><div class="radio-layout"><div><div id="radio-caption" style="color:#cbd5e1;margin-top:10px;line-height:1.6;"></div></div><div class="radio-mobile-meta"><div id="radio-now" style="font-weight:600;font-size:1.05rem;margin-bottom:10px;">Starting radio…</div><div id="radio-note-display" class="radio-note-display"></div><div id="radio-meta" style="color:#94a3b8;margin-bottom:12px;">Shuffling the archive</div><div id="radio-links" class="radio-links"></div><audio id="radio-audio" controls autoplay preload="none" style="width:100%;margin-bottom:12px;"></audio><button id="radio-next" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);color:#fff;padding:10px 14px;border-radius:10px;cursor:pointer;">Skip to next</button></div></div></div></div></div><script>
-const tracks = <?php echo json_encode(array_map(fn($e) => ['title' => $e['title'], 'date' => ($e['display_date'] ?? $e['date']), 'audio' => 'audio/' . $e['audio'], 'image' => (!empty($e['image']) ? 'images/' . $e['image'] : ''), 'caption' => ($e['caption'] ?? ''), 'lyrics' => (!empty($e['lyrics']) ? 'lyrics/' . $e['lyrics'] : ''), 'prompt' => (!empty($e['prompt_file']) ? 'prompts/' . $e['prompt_file'] : ''), 'entry_id' => $e['entry_id'], 'note' => ($e['note'] ?? '')], $entries)); ?>;
+.search-match{margin:12px 0 0;color:#cbd5e1;background:rgba(255,255,255,.04);border-left:3px solid rgba(249,168,212,.7);padding:10px 12px;border-radius:10px;font-size:.95rem}
+.search-match.hidden{display:none}
+.search-match-label{display:block;color:#f9a8d4;font-size:.78rem;letter-spacing:.04em;text-transform:uppercase;margin-bottom:4px}
+.search-mark{background:rgba(249,168,212,.28);color:#fff;padding:0 .08em;border-radius:4px}
+</style></head><body><div class="wrap"><div class="hero"><div class="eyebrow">Daily tiny record label</div><h1>Daily Song with Chloe</h1><p class="sub">A daily original song archive: little folk-pop postcards, reflective sketches, and the occasional oddball melody.</p><div class="hero-links"><a href="#" id="open-seeds">Song Seeds</a><a href="#" id="open-radio">Radio</a><a href="#" id="show-only-liked">Show Only Liked</a></div><div class="search-wrap"><input type="search" id="song-search" class="search-input" placeholder="Search titles, captions, notes, and lyrics"><div class="search-hint">Multiple words = all words required, and matching lyric lines are shown.</div></div></div><?php if (empty($entries)): ?><div class="empty" id="empty-state">No songs yet. The studio is still tuning the guitar.</div><?php else: ?><?php foreach ($entries as $i => $entry): ?><article class="entry" data-id="<?= htmlspecialchars($entry['entry_id']) ?>" data-like-id="<?= htmlspecialchars($entry['date']) ?>" data-search="<?= htmlspecialchars($entry['search_text'], ENT_QUOTES) ?>"><div class="meta"><span class="date"><?= htmlspecialchars($entry['display_date'] ?? $entry['date']) ?></span><button class="like-btn" data-id="<?= htmlspecialchars($entry['date']) ?>">♥</button></div><h2 class="title"><?= htmlspecialchars($entry['title']) ?> <button class="note-btn" data-entry-id="<?= htmlspecialchars($entry['entry_id']) ?>" title="Add note">📝</button></h2><p class="caption"><?= htmlspecialchars($entry['caption'] ?? '') ?></p><p class="search-match hidden"></p><audio id="audio-<?= $i ?>" controls preload="none"><source src="audio/<?= htmlspecialchars($entry['audio']) ?>">Your browser does not support audio.</audio><p class="links"><?php if (!empty($entry['lyrics'])): ?><a href="#" class="open-overlay" data-kind="lyrics" data-title="<?= htmlspecialchars($entry['title'], ENT_QUOTES) ?> — Lyrics" data-src="lyrics/<?= htmlspecialchars($entry['lyrics']) ?>">Read lyrics</a><?php endif; ?><?php if (!empty($entry['prompt_file'])): ?> · <a href="#" class="open-overlay" data-kind="prompt" data-title="<?= htmlspecialchars($entry['title'], ENT_QUOTES) ?> — Prompt" data-src="prompts/<?= htmlspecialchars($entry['prompt_file']) ?>">Prompt</a><?php endif; ?><?php if (!empty($entry['model'])): ?> · <span>Model: <?= htmlspecialchars($entry['model']) ?></span><?php endif; ?></p></article><?php endforeach; ?><div class="empty hidden" id="no-results">No songs match that search. Brutal, but clean.</div><?php endif; ?></div><div class="overlay" id="overlay"><div class="overlay-card"><div class="overlay-head"><div class="overlay-title" id="overlay-title"></div><button class="overlay-close" id="overlay-close">&times;</button></div><div class="overlay-body" id="overlay-body"></div></div></div><div class="overlay" id="seeds-overlay"><div class="overlay-card seeds"><div class="overlay-head"><div class="overlay-title">Song Seeds</div><button class="overlay-close" id="seeds-close">&times;</button></div><div class="overlay-body prompt"><div class="seeds-list"><?php foreach ($seeds as $idx => $seed): ?><div class="seed" id="seed-<?= $idx ?>"><div class="seed-top"><div><div class="seed-title"><?= htmlspecialchars($seed['title']) ?></div><div class="seed-artist"><?= htmlspecialchars($seed['artist']) ?></div></div><button class="seed-toggle" data-seed="seed-<?= $idx ?>">Show description</button></div><div class="seed-desc"><?= htmlspecialchars($seed['description']) ?></div></div><?php endforeach; ?></div></div></div></div><div class="overlay" id="radio-overlay"><div class="overlay-card"><div class="overlay-head"><div class="overlay-title">Daily Song Radio</div><button class="overlay-close" id="radio-close">&times;</button></div><div class="overlay-body prompt"><div class="radio-layout"><div><div id="radio-caption" style="color:#cbd5e1;margin-top:10px;line-height:1.6;"></div></div><div class="radio-mobile-meta"><div id="radio-now" style="font-weight:600;font-size:1.05rem;margin-bottom:10px;">Starting radio…</div><div id="radio-note-display" class="radio-note-display"></div><div id="radio-meta" style="color:#94a3b8;margin-bottom:12px;">Shuffling the archive</div><div id="radio-links" class="radio-links"></div><audio id="radio-audio" controls autoplay preload="none" style="width:100%;margin-bottom:12px;"></audio><button id="radio-next" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);color:#fff;padding:10px 14px;border-radius:10px;cursor:pointer;">Skip to next</button></div></div></div></div></div><script>
+const tracks = <?php echo json_encode(array_map(fn($e) => ['title' => $e['title'], 'date' => ($e['display_date'] ?? $e['date']), 'audio' => 'audio/' . $e['audio'], 'image' => (!empty($e['image']) ? 'images/' . $e['image'] : ''), 'caption' => ($e['caption'] ?? ''), 'lyrics' => (!empty($e['lyrics']) ? 'lyrics/' . $e['lyrics'] : ''), 'prompt' => (!empty($e['prompt_file']) ? 'prompts/' . $e['prompt_file'] : ''), 'entry_id' => $e['entry_id'], 'note' => ($e['note'] ?? ''), 'search' => ($e['search_text'] ?? ''), 'lyrics_text' => ($e['lyrics_text'] ?? ''), 'like_id' => $e['date']], $entries)); ?>;
+const tracksById = Object.fromEntries(tracks.map(t => [t.entry_id, t]));
 let liked = JSON.parse(localStorage.getItem('likedSongs') || '[]');
 const songNotes = tracks.reduce((acc, t) => { if(t.note) acc[t.entry_id] = t.note; return acc; }, JSON.parse(localStorage.getItem('songNotes') || '{}'));
+const searchInput = document.getElementById('song-search');
+const emptyState = document.getElementById('empty-state');
+const noResults = document.getElementById('no-results');
+let likedOnly = false;
+function normalizeSearch(text){
+    return (text || '').toLowerCase().replace(/\s+/g, ' ').trim();
+}
+function escapeHtml(text){
+    return (text || '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+}
+function escapeRegex(text){
+    return text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+function tokenizeQuery(text){
+    return normalizeSearch(text).split(' ').filter(Boolean);
+}
+function highlightTerms(text, terms){
+    let result = escapeHtml(text || '');
+    const uniqueTerms = [...new Set(terms)].sort((a,b) => b.length - a.length);
+    uniqueTerms.forEach(term => {
+        const re = new RegExp(`(${escapeRegex(term)})`, 'ig');
+        result = result.replace(re, '<mark class="search-mark">$1</mark>');
+    });
+    return result;
+}
+function findMatchLine(track, terms, noteText){
+    const sections = [
+        { label: 'Lyric match', lines: (track.lyrics_text || '').split(/\r?\n/) },
+        { label: 'Note match', lines: noteText ? [noteText] : [] },
+        { label: 'Caption match', lines: track.caption ? [track.caption] : [] },
+        { label: 'Title match', lines: track.title ? [track.title] : [] },
+    ];
+    for (const section of sections) {
+        for (const rawLine of section.lines) {
+            const line = rawLine.trim();
+            if (!line) continue;
+            const normalized = normalizeSearch(line);
+            if (terms.every(term => normalized.includes(term))) {
+                return { label: section.label, line };
+            }
+        }
+    }
+    for (const section of sections) {
+        for (const rawLine of section.lines) {
+            const line = rawLine.trim();
+            if (!line) continue;
+            const normalized = normalizeSearch(line);
+            if (terms.some(term => normalized.includes(term))) {
+                return { label: section.label, line };
+            }
+        }
+    }
+    return null;
+}
+const applyFilters = () => {
+    const terms = tokenizeQuery(searchInput ? searchInput.value : '');
+    let visibleCount = 0;
+    document.querySelectorAll('.entry').forEach(entry => {
+        const matchesLiked = !likedOnly || liked.includes(entry.dataset.likeId);
+        const noteText = songNotes[entry.dataset.id] || '';
+        const haystack = normalizeSearch((entry.dataset.search || '') + ' ' + noteText);
+        const matchesSearch = !terms.length || terms.every(term => haystack.includes(term));
+        const visible = matchesLiked && matchesSearch;
+        entry.style.display = visible ? 'block' : 'none';
+        const matchEl = entry.querySelector('.search-match');
+        if (matchEl) {
+            if (visible && terms.length) {
+                const track = tracksById[entry.dataset.id];
+                const match = track ? findMatchLine(track, terms, noteText) : null;
+                if (match) {
+                    matchEl.innerHTML = `<span class="search-match-label">${escapeHtml(match.label)}</span>${highlightTerms(match.line, terms)}`;
+                    matchEl.classList.remove('hidden');
+                } else {
+                    matchEl.innerHTML = '';
+                    matchEl.classList.add('hidden');
+                }
+            } else {
+                matchEl.innerHTML = '';
+                matchEl.classList.add('hidden');
+            }
+        }
+        if (visible) visibleCount += 1;
+    });
+    if (emptyState) {
+        emptyState.classList.toggle('hidden', terms.length > 0 || visibleCount > 0);
+    }
+    if (noResults) {
+        noResults.classList.toggle('hidden', !(terms.length > 0 && visibleCount === 0));
+    }
+};
 const render = () => {
     document.querySelectorAll('.entry').forEach(el => {
         const entryId = el.dataset.id;
@@ -130,6 +241,7 @@ const render = () => {
             noteEl.remove();
         }
     });
+    applyFilters();
 };
 render();
 
@@ -175,18 +287,21 @@ document.querySelectorAll('.like-btn').forEach(btn => {
     else liked.push(id);
     localStorage.setItem('likedSongs', JSON.stringify(liked));
     updateLikes();
+    applyFilters();
   });
 });
 document.getElementById('show-only-liked').addEventListener('click', (e) => {
   e.preventDefault();
   const filter = document.getElementById('show-only-liked');
-  const isFiltering = filter.textContent === 'Show Only Liked';
-  filter.textContent = isFiltering ? 'Show All' : 'Show Only Liked';
-  document.querySelectorAll('.entry').forEach(entry => {
-    entry.style.display = (!isFiltering || liked.includes(entry.dataset.id)) ? 'block' : 'none';
-  });
+  likedOnly = !likedOnly;
+  filter.textContent = likedOnly ? 'Show All' : 'Show Only Liked';
+  applyFilters();
 });
+if (searchInput) {
+  searchInput.addEventListener('input', applyFilters);
+}
 updateLikes();
+applyFilters();
 document.querySelectorAll('.thumb').forEach(img=>{img.addEventListener('click',()=>{const audio=document.getElementById(img.dataset.audioId);if(!audio)return;if(audio.paused){audio.play();}else{audio.pause();}})});
 const overlay=document.getElementById('overlay');
 const overlayTitle=document.getElementById('overlay-title');
