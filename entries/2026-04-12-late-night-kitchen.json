@@ -1,0 +1,12 @@
+{
+  "date": "2026-04-12",
+  "display_date": "April 12, 2026",
+  "title": "Late Night Kitchen",
+  "caption": "A close, confessional acoustic pop song about mixed signals and the quiet ache of staying up too late to figure out what went wrong.",
+  "audio": "2026-04-12-late-night-kitchen.mp3",
+  "image": "2026-04-12-late-night-kitchen.png",
+  "lyrics": "2026-04-12-late-night-kitchen.txt",
+  "model": "lyria-3-pro-preview",
+  "prompt": "intimate mid-90s acoustic pop with vulnerable female vocals, jangly guitars, and bittersweet restraint",
+  "prompt_file": "2026-04-12-late-night-kitchen.txt"
+}
