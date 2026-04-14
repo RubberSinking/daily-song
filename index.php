@@ -1,26 +1,4 @@
 <?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['entry_id']) && isset($_POST['note'])) {
-    $entry_id = basename($_POST['entry_id']);
-    $note = $_POST['note'];
-    $entries_dir = __DIR__ . '/entries/';
-    $file = $entries_dir . $entry_id . '.json';
-    $found = false;
-    if (file_exists($file)) {
-        $data = json_decode(file_get_contents($file), true);
-        if ($data) {
-            if (empty($note)) {
-                unset($data['note']);
-            } else {
-                $data['note'] = $note;
-            }
-            file_put_contents($file, json_encode($data, JSON_PRETTY_PRINT));
-            $found = true;
-        }
-    }
-    echo json_encode(['success' => $found]);
-    exit;
-}
-
 if (!empty($_GET['lyrics'])) {
     $slug = basename($_GET['lyrics']);
     $path = __DIR__ . '/lyrics/' . $slug;
@@ -86,7 +64,6 @@ if (is_dir($entries_dir)) {
             $data['caption'] ?? '',
             $data['date'] ?? '',
             $data['display_date'] ?? '',
-            $data['note'] ?? '',
             $lyrics_text,
         ])));
         $data['file_path'] = $file;
@@ -118,24 +95,15 @@ if (file_exists($seeds_path)) {
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
 <style>
 body{margin:0;font-family:Inter,sans-serif;background:linear-gradient(180deg,#1f2937,#0f172a);color:#e5e7eb;line-height:1.6}
-.wrap{max-width:920px;margin:0 auto;padding:32px 20px 80px}.hero{margin-bottom:36px}.eyebrow{text-transform:uppercase;letter-spacing:.12em;font-size:.78rem;color:#f9a8d4;margin-bottom:10px}h1{margin:0 0 10px;font-size:clamp(2rem,4vw,3.4rem);line-height:1.05}.sub{max-width:720px;color:#cbd5e1;font-size:1.05rem}.hero-links{margin-top:10px;display:flex;gap:14px;flex-wrap:wrap}.hero-links a{color:#93c5fd;text-decoration:none;font-weight:500}.hero-links a:hover{text-decoration:underline}.search-wrap{margin-top:18px;max-width:520px}.search-input{width:100%;box-sizing:border-box;padding:12px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06);color:#f8fafc;font:inherit}.search-input::placeholder{color:#94a3b8}.search-hint{margin-top:8px;color:#94a3b8;font-size:.92rem}.entry{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:20px;margin:0 0 24px;box-shadow:0 18px 45px rgba(0,0,0,.25)}.meta{display:flex;gap:10px;align-items:center;margin-bottom:12px;flex-wrap:wrap}.date{color:#94a3b8;font-size:.9rem}.title{margin:0 0 8px;font-size:1.6rem}.caption{margin:0 0 16px;color:#fce7f3;font-family:Lora,serif;font-size:1.06rem}.links a,.radio-links a{color:#93c5fd;text-decoration:none;font-weight:500}.links a:hover,.radio-links a:hover{text-decoration:underline}audio{width:100%;margin:10px 0 8px}.empty{color:#94a3b8;border:1px dashed rgba(255,255,255,.15);border-radius:18px;padding:24px}.empty.hidden{display:none}.overlay{display:none;position:fixed;inset:0;background:rgba(2,6,23,.82);z-index:1000;align-items:center;justify-content:center;padding:20px}.overlay.open{display:flex}#overlay{z-index:2200}#seeds-overlay{z-index:1600}#radio-overlay{z-index:1400}.overlay-card{max-width:760px;width:100%;max-height:85vh;overflow:auto;background:linear-gradient(180deg,#111827,#0f172a);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:24px;box-shadow:0 18px 45px rgba(0,0,0,.45)}.overlay-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}.overlay-title{font-size:1.2rem;font-weight:600}.overlay-close{background:rgba(255,255,255,.08);border:none;color:#fff;font-size:1.4rem;width:38px;height:38px;border-radius:50%;cursor:pointer}.overlay-close:hover{background:rgba(255,255,255,.16)}.overlay-body{white-space:pre-wrap}.overlay-body.lyrics{font-family:Lora,serif;line-height:1.8;font-size:1.06rem;color:#e2e8f0}.overlay-body.prompt{font-family:Inter,sans-serif;line-height:1.7;color:#e2e8f0}.overlay-card.seeds{max-width:900px}.seeds-list{display:grid;gap:12px}.seed{border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:14px 16px;background:rgba(255,255,255,.03)}.seed-top{display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap}.seed-title{font-weight:600;color:#f8fafc}.seed-artist{color:#94a3b8;font-size:.95rem}.seed-toggle{color:#93c5fd;background:none;border:none;padding:0;cursor:pointer;font:inherit}.seed-desc{display:none;margin-top:10px;color:#cbd5e1;line-height:1.7}.seed.open .seed-desc{display:block}.radio-layout{display:grid;grid-template-columns:minmax(180px,240px) 1fr;gap:18px;align-items:start}.radio-links{margin:0 0 12px 0;color:#94a3b8}.radio-links a{display:inline-block}.radio-links .sep{color:#64748b;margin:0 6px}.radio-note-display{margin:0 0 12px}.radio-note-display:empty{display:none}.radio-note-display .song-note{margin-top:0}.like-btn{background:none;border:none;color:#94a3b8;cursor:pointer;font-size:1.2rem;padding:0;transition:color .2s}.like-btn.liked{color:#f472b6}@media (max-width: 640px){.radio-layout{grid-template-columns:1fr}.overlay-card{padding:18px}.radio-mobile-meta{margin-top:12px}.radio-note-display .song-note{font-size:.98rem;line-height:1.6;padding:10px 12px}}
-.note-btn{background:none;border:none;color:#93c5fd;cursor:pointer;padding:0;font-size:1rem;margin-left:8px;opacity:0.6}
-.note-btn:hover{opacity:1}
-.song-note{font-size:.9rem;color:#e5edf8;background:rgba(147,197,253,.10);border:1px solid rgba(147,197,253,.18);padding:8px 12px;border-radius:10px;margin:8px 0 0 0;font-style:italic}
-.note-input{width:100%;box-sizing:border-box;padding:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.15);color:#fff;border-radius:8px;margin:10px 0}
-.note-actions{display:flex;gap:10px}
-.note-actions button{padding:6px 12px;cursor:pointer;border-radius:6px;border:none}
-.save-note{background:#93c5fd;color:#0f172a}
-.del-note{background:transparent;color:#f87171}
+.wrap{max-width:920px;margin:0 auto;padding:32px 20px 80px}.hero{margin-bottom:36px}.eyebrow{text-transform:uppercase;letter-spacing:.12em;font-size:.78rem;color:#f9a8d4;margin-bottom:10px}h1{margin:0 0 10px;font-size:clamp(2rem,4vw,3.4rem);line-height:1.05}.sub{max-width:720px;color:#cbd5e1;font-size:1.05rem}.hero-links{margin-top:10px;display:flex;gap:14px;flex-wrap:wrap}.hero-links a{color:#93c5fd;text-decoration:none;font-weight:500}.hero-links a:hover{text-decoration:underline}.search-wrap{margin-top:18px;max-width:520px}.search-input{width:100%;box-sizing:border-box;padding:12px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06);color:#f8fafc;font:inherit}.search-input::placeholder{color:#94a3b8}.search-hint{margin-top:8px;color:#94a3b8;font-size:.92rem}.entry{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:20px;margin:0 0 24px;box-shadow:0 18px 45px rgba(0,0,0,.25)}.meta{display:flex;gap:10px;align-items:center;margin-bottom:12px;flex-wrap:wrap}.date{color:#94a3b8;font-size:.9rem}.title{margin:0 0 8px;font-size:1.6rem}.caption{margin:0 0 16px;color:#fce7f3;font-family:Lora,serif;font-size:1.06rem}.links a,.radio-links a{color:#93c5fd;text-decoration:none;font-weight:500}.links a:hover,.radio-links a:hover{text-decoration:underline}audio{width:100%;margin:10px 0 8px}.empty{color:#94a3b8;border:1px dashed rgba(255,255,255,.15);border-radius:18px;padding:24px}.empty.hidden{display:none}.overlay{display:none;position:fixed;inset:0;background:rgba(2,6,23,.82);z-index:1000;align-items:center;justify-content:center;padding:20px}.overlay.open{display:flex}#overlay{z-index:2200}#seeds-overlay{z-index:1600}#radio-overlay{z-index:1400}.overlay-card{max-width:760px;width:100%;max-height:85vh;overflow:auto;background:linear-gradient(180deg,#111827,#0f172a);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:24px;box-shadow:0 18px 45px rgba(0,0,0,.45)}.overlay-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}.overlay-title{font-size:1.2rem;font-weight:600}.overlay-close{background:rgba(255,255,255,.08);border:none;color:#fff;font-size:1.4rem;width:38px;height:38px;border-radius:50%;cursor:pointer}.overlay-close:hover{background:rgba(255,255,255,.16)}.overlay-body{white-space:pre-wrap}.overlay-body.lyrics{font-family:Lora,serif;line-height:1.8;font-size:1.06rem;color:#e2e8f0}.overlay-body.prompt{font-family:Inter,sans-serif;line-height:1.7;color:#e2e8f0}.overlay-card.seeds{max-width:900px}.seeds-list{display:grid;gap:12px}.seed{border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:14px 16px;background:rgba(255,255,255,.03)}.seed-top{display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap}.seed-title{font-weight:600;color:#f8fafc}.seed-artist{color:#94a3b8;font-size:.95rem}.seed-toggle{color:#93c5fd;background:none;border:none;padding:0;cursor:pointer;font:inherit}.seed-desc{display:none;margin-top:10px;color:#cbd5e1;line-height:1.7}.seed.open .seed-desc{display:block}.radio-layout{display:grid;grid-template-columns:minmax(180px,240px) 1fr;gap:18px;align-items:start}.radio-links{margin:0 0 12px 0;color:#94a3b8}.radio-links a{display:inline-block}.radio-links .sep{color:#64748b;margin:0 6px}.like-btn{background:none;border:none;color:#94a3b8;cursor:pointer;font-size:1.2rem;padding:0;transition:color .2s}.like-btn.liked{color:#f472b6}@media (max-width: 640px){.radio-layout{grid-template-columns:1fr}.overlay-card{padding:18px}.radio-mobile-meta{margin-top:12px}}
 .search-match{margin:12px 0 0;color:#cbd5e1;background:rgba(255,255,255,.04);border-left:3px solid rgba(249,168,212,.7);padding:10px 12px;border-radius:10px;font-size:.95rem}
 .search-match.hidden{display:none}
 .search-match-label{display:block;color:#f9a8d4;font-size:.78rem;letter-spacing:.04em;text-transform:uppercase;margin-bottom:4px}
 .search-mark{background:rgba(249,168,212,.28);color:#fff;padding:0 .08em;border-radius:4px}
-</style></head><body><div class="wrap"><div class="hero"><div class="eyebrow">Daily tiny record label</div><h1>Daily Song with Chloe</h1><p class="sub">A daily original song archive: little folk-pop postcards, reflective sketches, and the occasional oddball melody.</p><div class="hero-links"><a href="#" id="open-seeds">Song Seeds</a><a href="#" id="open-radio">Radio</a><a href="#" id="show-only-liked">Show Only Liked</a></div><div class="search-wrap"><input type="search" id="song-search" class="search-input" placeholder="Search titles, captions, notes, and lyrics"><div class="search-hint">Multiple words = all words required, and matching lyric lines are shown.</div></div></div><?php if (empty($entries)): ?><div class="empty" id="empty-state">No songs yet. The studio is still tuning the guitar.</div><?php else: ?><?php foreach ($entries as $i => $entry): ?><article class="entry" data-id="<?= htmlspecialchars($entry['entry_id']) ?>" data-like-id="<?= htmlspecialchars($entry['date']) ?>" data-search="<?= htmlspecialchars($entry['search_text'], ENT_QUOTES) ?>"><div class="meta"><span class="date"><?= htmlspecialchars($entry['display_date'] ?? $entry['date']) ?></span><button class="like-btn" data-id="<?= htmlspecialchars($entry['date']) ?>">♥</button></div><h2 class="title"><?= htmlspecialchars($entry['title']) ?> <button class="note-btn" data-entry-id="<?= htmlspecialchars($entry['entry_id']) ?>" title="Add note">📝</button></h2><p class="caption"><?= htmlspecialchars($entry['caption'] ?? '') ?></p><p class="search-match hidden"></p><audio id="audio-<?= $i ?>" controls preload="none"><source src="audio/<?= htmlspecialchars($entry['audio']) ?>">Your browser does not support audio.</audio><p class="links"><?php if (!empty($entry['lyrics'])): ?><a href="#" class="open-overlay" data-kind="lyrics" data-title="<?= htmlspecialchars($entry['title'], ENT_QUOTES) ?> — Lyrics" data-src="lyrics/<?= htmlspecialchars($entry['lyrics']) ?>">Read lyrics</a><?php endif; ?><?php if (!empty($entry['prompt_file'])): ?> · <a href="#" class="open-overlay" data-kind="prompt" data-title="<?= htmlspecialchars($entry['title'], ENT_QUOTES) ?> — Prompt" data-src="prompts/<?= htmlspecialchars($entry['prompt_file']) ?>">Prompt</a><?php endif; ?><?php if (!empty($entry['model'])): ?> · <span>Model: <?= htmlspecialchars($entry['model']) ?></span><?php endif; ?></p></article><?php endforeach; ?><div class="empty hidden" id="no-results">No songs match that search. Brutal, but clean.</div><?php endif; ?></div><div class="overlay" id="overlay"><div class="overlay-card"><div class="overlay-head"><div class="overlay-title" id="overlay-title"></div><button class="overlay-close" id="overlay-close">&times;</button></div><div class="overlay-body" id="overlay-body"></div></div></div><div class="overlay" id="seeds-overlay"><div class="overlay-card seeds"><div class="overlay-head"><div class="overlay-title">Song Seeds</div><button class="overlay-close" id="seeds-close">&times;</button></div><div class="overlay-body prompt"><div class="seeds-list"><?php foreach ($seeds as $idx => $seed): ?><div class="seed" id="seed-<?= $idx ?>"><div class="seed-top"><div><div class="seed-title"><?= htmlspecialchars($seed['title']) ?></div><div class="seed-artist"><?= htmlspecialchars($seed['artist']) ?></div></div><button class="seed-toggle" data-seed="seed-<?= $idx ?>">Show description</button></div><div class="seed-desc"><?= htmlspecialchars($seed['description']) ?></div></div><?php endforeach; ?></div></div></div></div><div class="overlay" id="radio-overlay"><div class="overlay-card"><div class="overlay-head"><div class="overlay-title">Daily Song Radio</div><button class="overlay-close" id="radio-close">&times;</button></div><div class="overlay-body prompt"><div class="radio-layout"><div><div id="radio-caption" style="color:#cbd5e1;margin-top:10px;line-height:1.6;"></div></div><div class="radio-mobile-meta"><div id="radio-now" style="font-weight:600;font-size:1.05rem;margin-bottom:10px;">Starting radio…</div><div id="radio-note-display" class="radio-note-display"></div><div id="radio-meta" style="color:#94a3b8;margin-bottom:12px;">Shuffling the archive</div><div id="radio-links" class="radio-links"></div><audio id="radio-audio" controls autoplay preload="none" style="width:100%;margin-bottom:12px;"></audio><button id="radio-next" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);color:#fff;padding:10px 14px;border-radius:10px;cursor:pointer;">Skip to next</button></div></div></div></div></div><script>
-const tracks = <?php echo json_encode(array_map(fn($e) => ['title' => $e['title'], 'date' => ($e['display_date'] ?? $e['date']), 'audio' => 'audio/' . $e['audio'], 'image' => (!empty($e['image']) ? 'images/' . $e['image'] : ''), 'caption' => ($e['caption'] ?? ''), 'lyrics' => (!empty($e['lyrics']) ? 'lyrics/' . $e['lyrics'] : ''), 'prompt' => (!empty($e['prompt_file']) ? 'prompts/' . $e['prompt_file'] : ''), 'entry_id' => $e['entry_id'], 'note' => ($e['note'] ?? ''), 'search' => ($e['search_text'] ?? ''), 'lyrics_text' => ($e['lyrics_text'] ?? ''), 'like_id' => $e['date']], $entries)); ?>;
+</style></head><body><div class="wrap"><div class="hero"><div class="eyebrow">Daily tiny record label</div><h1>Daily Song with Chloe</h1><p class="sub">A daily original song archive: little folk-pop postcards, reflective sketches, and the occasional oddball melody.</p><div class="hero-links"><a href="#" id="open-seeds">Song Seeds</a><a href="#" id="open-radio">Radio</a><a href="#" id="show-only-liked">Show Only Liked</a></div><div class="search-wrap"><input type="search" id="song-search" class="search-input" placeholder="Search titles, captions, and lyrics"><div class="search-hint">Multiple words = all words required, and matching lyric lines are shown.</div></div></div><?php if (empty($entries)): ?><div class="empty" id="empty-state">No songs yet. The studio is still tuning the guitar.</div><?php else: ?><?php foreach ($entries as $i => $entry): ?><article class="entry" data-id="<?= htmlspecialchars($entry['entry_id']) ?>" data-like-id="<?= htmlspecialchars($entry['date']) ?>" data-search="<?= htmlspecialchars($entry['search_text'], ENT_QUOTES) ?>"><div class="meta"><span class="date"><?= htmlspecialchars($entry['display_date'] ?? $entry['date']) ?></span><button class="like-btn" data-id="<?= htmlspecialchars($entry['date']) ?>">♥</button></div><h2 class="title"><?= htmlspecialchars($entry['title']) ?></h2><p class="caption"><?= htmlspecialchars($entry['caption'] ?? '') ?></p><p class="search-match hidden"></p><audio id="audio-<?= $i ?>" controls preload="none"><source src="audio/<?= htmlspecialchars($entry['audio']) ?>">Your browser does not support audio.</audio><p class="links"><?php if (!empty($entry['lyrics'])): ?><a href="#" class="open-overlay" data-kind="lyrics" data-title="<?= htmlspecialchars($entry['title'], ENT_QUOTES) ?> — Lyrics" data-src="lyrics/<?= htmlspecialchars($entry['lyrics']) ?>">Read lyrics</a><?php endif; ?><?php if (!empty($entry['prompt_file'])): ?> · <a href="#" class="open-overlay" data-kind="prompt" data-title="<?= htmlspecialchars($entry['title'], ENT_QUOTES) ?> — Prompt" data-src="prompts/<?= htmlspecialchars($entry['prompt_file']) ?>">Prompt</a><?php endif; ?><?php if (!empty($entry['model'])): ?> · <span>Model: <?= htmlspecialchars($entry['model']) ?></span><?php endif; ?></p></article><?php endforeach; ?><div class="empty hidden" id="no-results">No songs match that search. Brutal, but clean.</div><?php endif; ?></div><div class="overlay" id="overlay"><div class="overlay-card"><div class="overlay-head"><div class="overlay-title" id="overlay-title"></div><button class="overlay-close" id="overlay-close">&times;</button></div><div class="overlay-body" id="overlay-body"></div></div></div><div class="overlay" id="seeds-overlay"><div class="overlay-card seeds"><div class="overlay-head"><div class="overlay-title">Song Seeds</div><button class="overlay-close" id="seeds-close">&times;</button></div><div class="overlay-body prompt"><div class="seeds-list"><?php foreach ($seeds as $idx => $seed): ?><div class="seed" id="seed-<?= $idx ?>"><div class="seed-top"><div><div class="seed-title"><?= htmlspecialchars($seed['title']) ?></div><div class="seed-artist"><?= htmlspecialchars($seed['artist']) ?></div></div><button class="seed-toggle" data-seed="seed-<?= $idx ?>">Show description</button></div><div class="seed-desc"><?= htmlspecialchars($seed['description']) ?></div></div><?php endforeach; ?></div></div></div></div><div class="overlay" id="radio-overlay"><div class="overlay-card"><div class="overlay-head"><div class="overlay-title">Daily Song Radio</div><button class="overlay-close" id="radio-close">&times;</button></div><div class="overlay-body prompt"><div class="radio-layout"><div><div id="radio-caption" style="color:#cbd5e1;margin-top:10px;line-height:1.6;"></div></div><div class="radio-mobile-meta"><div id="radio-now" style="font-weight:600;font-size:1.05rem;margin-bottom:10px;">Starting radio…</div><div id="radio-meta" style="color:#94a3b8;margin-bottom:12px;">Shuffling the archive</div><div id="radio-links" class="radio-links"></div><audio id="radio-audio" controls autoplay preload="none" style="width:100%;margin-bottom:12px;"></audio><button id="radio-next" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);color:#fff;padding:10px 14px;border-radius:10px;cursor:pointer;">Skip to next</button></div></div></div></div></div><script>
+const tracks = <?php echo json_encode(array_map(fn($e) => ['title' => $e['title'], 'date' => ($e['display_date'] ?? $e['date']), 'audio' => 'audio/' . $e['audio'], 'image' => (!empty($e['image']) ? 'images/' . $e['image'] : ''), 'caption' => ($e['caption'] ?? ''), 'lyrics' => (!empty($e['lyrics']) ? 'lyrics/' . $e['lyrics'] : ''), 'prompt' => (!empty($e['prompt_file']) ? 'prompts/' . $e['prompt_file'] : ''), 'entry_id' => $e['entry_id'], 'search' => ($e['search_text'] ?? ''), 'lyrics_text' => ($e['lyrics_text'] ?? ''), 'like_id' => $e['date']], $entries)); ?>;
 const tracksById = Object.fromEntries(tracks.map(t => [t.entry_id, t]));
 let liked = JSON.parse(localStorage.getItem('likedSongs') || '[]');
-const songNotes = tracks.reduce((acc, t) => { if(t.note) acc[t.entry_id] = t.note; return acc; }, JSON.parse(localStorage.getItem('songNotes') || '{}'));
 const searchInput = document.getElementById('song-search');
 const emptyState = document.getElementById('empty-state');
 const noResults = document.getElementById('no-results');
@@ -161,10 +129,9 @@ function highlightTerms(text, terms){
     });
     return result;
 }
-function findMatchLine(track, terms, noteText){
+function findMatchLine(track, terms){
     const sections = [
         { label: 'Lyric match', lines: (track.lyrics_text || '').split(/\r?\n/) },
-        { label: 'Note match', lines: noteText ? [noteText] : [] },
         { label: 'Caption match', lines: track.caption ? [track.caption] : [] },
         { label: 'Title match', lines: track.title ? [track.title] : [] },
     ];
@@ -195,8 +162,7 @@ const applyFilters = () => {
     let visibleCount = 0;
     document.querySelectorAll('.entry').forEach(entry => {
         const matchesLiked = !likedOnly || liked.includes(entry.dataset.likeId);
-        const noteText = songNotes[entry.dataset.id] || '';
-        const haystack = normalizeSearch((entry.dataset.search || '') + ' ' + noteText);
+        const haystack = normalizeSearch(entry.dataset.search || '');
         const matchesSearch = !terms.length || terms.every(term => haystack.includes(term));
         const visible = matchesLiked && matchesSearch;
         entry.style.display = visible ? 'block' : 'none';
@@ -204,7 +170,7 @@ const applyFilters = () => {
         if (matchEl) {
             if (visible && terms.length) {
                 const track = tracksById[entry.dataset.id];
-                const match = track ? findMatchLine(track, terms, noteText) : null;
+                const match = track ? findMatchLine(track, terms) : null;
                 if (match) {
                     matchEl.innerHTML = `<span class="search-match-label">${escapeHtml(match.label)}</span>${highlightTerms(match.line, terms)}`;
                     matchEl.classList.remove('hidden');
@@ -227,53 +193,10 @@ const applyFilters = () => {
     }
 };
 const render = () => {
-    document.querySelectorAll('.entry').forEach(el => {
-        const entryId = el.dataset.id;
-        let noteEl = el.querySelector('.song-note');
-        if(songNotes[entryId]){
-            if(!noteEl) {
-                noteEl = document.createElement('p');
-                noteEl.className = 'song-note';
-                el.insertBefore(noteEl, el.querySelector('audio'));
-            }
-            noteEl.textContent = 'Note: ' + songNotes[entryId];
-        } else if(noteEl) {
-            noteEl.remove();
-        }
-    });
     applyFilters();
 };
 render();
 
-document.querySelectorAll('.note-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-        const entryId = btn.dataset.entryId;
-        const current = songNotes[entryId] || '';
-        overlayTitle.textContent = 'Edit Note';
-        overlayBody.className = 'overlay-body';
-        overlayBody.innerHTML = `<input type="text" class="note-input" id="note-val" value="${current}" placeholder="Add a note..."><div class="note-actions"><button class="save-note" id="save-note">Save</button><button class="del-note" id="del-note">Delete</button></div>`;
-        overlay.classList.add('open');
-        document.getElementById('save-note').addEventListener('click', async () => {
-            const val = document.getElementById('note-val').value;
-            const r = await fetch(window.location.href, { method: 'POST', body: new URLSearchParams({entry_id: entryId, note: val}) });
-            if((await r.json()).success) {
-                if(val) songNotes[entryId] = val; else delete songNotes[entryId];
-                localStorage.setItem('songNotes', JSON.stringify(songNotes));
-                render();
-                closeOverlay();
-            }
-        });
-        document.getElementById('del-note').addEventListener('click', async () => {
-            const r = await fetch(window.location.href, { method: 'POST', body: new URLSearchParams({entry_id: entryId, note: ''}) });
-            if((await r.json()).success) {
-                delete songNotes[entryId];
-                localStorage.setItem('songNotes', JSON.stringify(songNotes));
-                render();
-                closeOverlay();
-            }
-        });
-    });
-});
 /* Removed duplicate 'liked' declaration */
 const updateLikes = () => {
   document.querySelectorAll('.like-btn').forEach(btn => {
@@ -319,7 +242,6 @@ document.querySelectorAll('.seed-toggle').forEach(btn=>{btn.addEventListener('cl
 const radioOverlay=document.getElementById('radio-overlay');
 const radioAudio=document.getElementById('radio-audio');
 const radioNow=document.getElementById('radio-now');
-const radioNoteDisplay=document.getElementById('radio-note-display');
 const radioMeta=document.getElementById('radio-meta');
 const radioImage=document.getElementById('radio-image');
 const radioCaption=document.getElementById('radio-caption');
@@ -329,50 +251,6 @@ function shuffle(arr){ const a=[...arr]; for(let i=a.length-1;i>0;i--){ const j=
 function buildRadioQueue(){ radioQueue = shuffle(tracks); radioIndex = 0; }
 function playRadioIndex(){ if(!radioQueue.length) return; if(radioIndex >= radioQueue.length){ buildRadioQueue(); radioMeta.textContent='Reshuffled the archive'; }
   const t = radioQueue[radioIndex]; radioAudio.src = t.audio; radioNow.textContent = t.title; radioMeta.textContent = `${t.date} · ${radioIndex+1} of ${radioQueue.length} in current shuffle`; 
-  const note = songNotes[t.entry_id] || t.note || '';
-  radioNoteDisplay.innerHTML = note ? `<p class="song-note">Note: ${note}</p>` : '';
-
-  const radioEditBtn = document.createElement('button');
-  radioEditBtn.className = 'note-btn';
-  radioEditBtn.textContent = '📝';
-  radioEditBtn.title = 'Edit note';
-  radioEditBtn.addEventListener('click', () => {
-    const current = songNotes[t.entry_id] || '';
-    overlayTitle.textContent = 'Edit Note';
-    overlayBody.className = 'overlay-body';
-    overlayBody.innerHTML = `<input type="text" class="note-input" id="note-val" value="${current}" placeholder="Add a note..."><div class="note-actions"><button class="save-note" id="save-note">Save</button><button class="del-note" id="del-note">Delete</button></div>`;
-    overlay.classList.add('open');
-    document.getElementById('save-note').addEventListener('click', async () => {
-        const val = document.getElementById('note-val').value;
-        const r = await fetch(window.location.href, { method: 'POST', body: new URLSearchParams({entry_id: t.entry_id, note: val}) });
-        if((await r.json()).success) {
-            if(val) songNotes[t.entry_id] = val; else delete songNotes[t.entry_id];
-            localStorage.setItem('songNotes', JSON.stringify(songNotes));
-            render();
-            // Update the note display in the radio UI directly
-            if (val) {
-                radioNoteDisplay.innerHTML = `<p class="song-note">Note: ${val}</p>`;
-            } else {
-                radioNoteDisplay.innerHTML = '';
-            }
-            closeOverlay();
-        }
-    });
-    document.getElementById('del-note').addEventListener('click', async () => {
-        const r = await fetch(window.location.href, { method: 'POST', body: new URLSearchParams({entry_id: t.entry_id, note: ''}) });
-        if((await r.json()).success) {
-            delete songNotes[t.entry_id];
-            localStorage.setItem('songNotes', JSON.stringify(songNotes));
-            render();
-            // Update the note display in the radio UI directly
-            radioNoteDisplay.innerHTML = '';
-            closeOverlay();
-        }
-    });
-  });
-
-  radioNow.appendChild(radioEditBtn);
-
   radioCaption.textContent = t.caption;
   if(t.image){radioImage.src=t.image; radioImage.style.display='block';}else{radioImage.style.display='none'; radioImage.src='';} radioLinks.innerHTML = (t.lyrics ? `<a href="#" class="radio-open" data-kind="lyrics" data-title="${t.title} — Lyrics" data-src="${t.lyrics}">Lyrics</a>` : '') + (t.prompt ? ` · <a href="#" class="radio-open" data-kind="prompt" data-title="${t.title} — Prompt" data-src="${t.prompt}">Prompt</a>` : ''); radioLinks.querySelectorAll('.radio-open').forEach(a=>a.addEventListener('click', async e=>{ e.preventDefault(); overlayTitle.textContent=a.dataset.title||''; overlayBody.className='overlay-body '+(a.dataset.kind||''); overlayBody.textContent='Loading…'; overlay.classList.add('open'); try{ const r=await fetch(a.dataset.src,{cache:'no-store'}); const txt=await r.text(); overlayBody.textContent=txt; } catch(err){ overlayBody.textContent='Could not load.'; } })); radioAudio.play(); }
 document.getElementById('open-radio').addEventListener('click',e=>{ e.preventDefault(); radioOverlay.classList.add('open'); if(!radioQueue.length) buildRadioQueue(); playRadioIndex(); });
