@@ -1,0 +1,12 @@
+{
+  "date": "2026-04-19",
+  "display_date": "April 19, 2026",
+  "title": "The Space Between",
+  "caption": "An intimate late-night piano-jazz-pop ballad about the quiet ache of wondering where a connection went.",
+  "audio": "2026-04-19-the-space-between.mp3",
+  "image": "2026-04-19-the-space-between.png",
+  "lyrics": "2026-04-19-the-space-between.txt",
+  "model": "lyria-3-pro-preview",
+  "prompt": "intimate late-night piano-jazz-pop ballad with smoky, soft female vocals and jazz-singer restraint",
+  "prompt_file": "2026-04-19-the-space-between.txt"
+}
