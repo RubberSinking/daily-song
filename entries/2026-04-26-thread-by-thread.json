@@ -1,0 +1,12 @@
+{
+  "date": "2026-04-26",
+  "display_date": "April 26, 2026",
+  "title": "Thread by Thread",
+  "caption": "A fragile acoustic portrait of watching someone you love quietly unravel, held together by compassion and sparse, tender instrumentation.",
+  "audio": "2026-04-26-thread-by-thread.mp3",
+  "image": "",
+  "lyrics": "2026-04-26-thread-by-thread.txt",
+  "model": "lyria-3-pro-preview",
+  "prompt": "tender melancholy 90s acoustic singer-songwriter pop with fragile female vocals, sparse intimate arrangement, and compassionate lyrical observation",
+  "prompt_file": "2026-04-26-thread-by-thread.txt"
+}
