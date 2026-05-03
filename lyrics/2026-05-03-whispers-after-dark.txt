@@ -1,0 +1,35 @@
+[[A0]]
+[[B1]]
+[12.8:] Close the door on the day's long noise,
+[:] leave the city in the dust of our joys.
+[:] We don't need a map or a reason why,
+[:] just the softest light in the evening sky.
+[[C2]]
+[44.8:] Run away to the quiet we know,
+[:] where the only things moving are the shadows we throw.
+[:] Hold my hand while the world falls asleep,
+[:] it's a promise of closeness we're allowed to keep.
+[[B3]]
+[70.4:] Watch the rain on the window pane,
+[:] let it wash away the worry and strain.
+[:] A candle flickers on the bedside shelf,
+[:] I'm finding comfort just being myself,
+[:] (just being myself.)
+[[C4]]
+[102.4:] Run away to the quiet we know,
+[:] where the only things moving are the shadows we throw.
+[:] Hold my hand while the world falls asleep,
+[:] it's a promise of closeness we're allowed to keep.
+[[D5]]
+[128.0:] Somewhere the stars are a little more clear,
+[:] and the only sound is the one we hear.
+[:] No big words, no heavy demands,
+[:] just the weight of our interlocking hands.
+[[C6]]
+[147.2:] Run away to the quiet we know,
+[:] where the only things moving are the shadows we throw.
+[:] Hold my hand while the world falls asleep,
+[:] it's a promise of closeness we're allowed to keep,
+[:] (allowed to keep.)
+[[E7]]
+[172.8:] Find me in the quiet.
