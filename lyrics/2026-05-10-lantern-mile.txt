@@ -1,0 +1,37 @@
+[[A0]]
+[[B1]]
+[15.0:] Close the door on the humming street,
+[:] (humming street)
+[:] Leave the keys where the shadows meet.
+[:] Let the tea go cold in the cup,
+[:] Let the city lights lose their luck.
+[:] (lose their luck)
+[:] We could find a road with no name,
+[:] Where the rain and the light are the same.
+[[C2]]
+[45.0:] Oh, come away to the quiet side,
+[:] Where the moon and the stars can hide.
+[:] Just a rhythm of two in the dark,
+[:] Leaving not a trace or a mark.
+[:] No need to say where we're bound,
+[:] Just listen to the beautiful sound.
+[:] (the beautiful sound...)
+[[B3]]
+[75.0:] In a room where the air is sweet,
+[:] Walking soft on the wooden street.
+[:] Rain on the roof is a drummer now,
+[:] Smoothing the worry from your brow.
+[:] We don't need the answers or the time,
+[:] Just a simple rhythm and a rhyme.
+[[C4]]
+[105.0:] Oh, come away to the quiet side,
+[:] Where the moon and the stars can hide.
+[:] Just a rhythm of two in the dark,
+[:] Leaving not a trace or a mark.
+[:] No need to say where we're bound,
+[:] Just listen to the beautiful sound.
+[:] (the beautiful sound...)
+[[D5]]
+[135.0:] Just you and the beautiful sound...
+[:] (Mm-mm-mm-mmm)
+[:] (Come away...)

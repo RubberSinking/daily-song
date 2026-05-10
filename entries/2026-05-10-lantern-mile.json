@@ -1,0 +1,12 @@
+{
+  "date": "2026-05-10",
+  "display_date": "May 10, 2026",
+  "title": "Lantern Mile",
+  "caption": "A candlelit invitation to slip away from the noise and follow love into the hush of night.",
+  "audio": "2026-05-10-lantern-mile.mp3",
+  "image": "",
+  "lyrics": "2026-05-10-lantern-mile.txt",
+  "model": "lyria-3-pro-preview",
+  "prompt": "",
+  "prompt_file": "2026-05-10-lantern-mile.txt"
+}
