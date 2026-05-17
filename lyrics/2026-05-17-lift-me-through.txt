@@ -1,0 +1,54 @@
+[[A0]]
+[[B1]]
+[12.0:] The walls are leaning in again,
+[:] I'm tracing every line I know.
+[:] I'm reaching out to find your hand,
+[:] To stop the spin and let it go.
+[:] Give me something solid I can feel,
+[:] Tell me that the ground is really here.
+[:] I'm tired of the noise and all the ghosts,
+[:] Pull me back to everything that's real.
+[[C2]]
+[44.0:] Lift me up, lift me up, pull me through!
+[:] I need the light, I need the truth in you!
+[:] Ground me down, ground me down, make it stop!
+[:] You're the rescue, you're the drop!
+[:] I’m climbing out of the doubt, I’m taking hold!
+[:] With your hand on my heart, I’m finally bold!
+[:] Yeah, finally bold!
+[[B3]]
+[68.0:] The shadow's long but you are taller,
+[:] The world is loud but you are clear.
+[:] The circle's wide but you are closer,
+[:] Chasing out the whisper of the fear.
+[:] I can feel the blood returning to my skin,
+[:] I can feel the breath returning to my chest.
+[:] Open up the window let the air come in,
+[:] You’re the anchor and you’re the best.
+[[C4]]
+[100.0:] Lift me up, lift me up, pull me through!
+[:] I need the light, I need the truth in you!
+[:] Ground me down, ground me down, make it stop!
+[:] You're the rescue, you're the drop!
+[:] I’m climbing out of the doubt, I’m taking hold!
+[:] With your hand on my heart, I’m finally bold!
+[:] Yeah, finally bold!
+[[D5]]
+[124.0:] I’m not falling anymore,
+[:] I’m not drifting on the sea.
+[:] I’ve got the weight of you,
+[:] (The weight of you),
+[:] Finally here with me.
+[[C6]]
+[140.0:] Lift me up, lift me up, pull me through!
+[:] I need the light, I need the truth in you!
+[:] Ground me down, ground me down, make it stop!
+[:] You're the rescue, you're the drop!
+[:] I’m climbing out of the doubt, I’m taking hold!
+[:] With your hand on my heart, I’m finally bold!
+[:] Yeah, I'm finally bold!
+[[E7]]
+[164.0:] Pull me through...
+[:] (Mhm, mhm)
+[:] Yeah, I'm staying here with you.
+[:] Safe now.
