@@ -1,0 +1,36 @@
+[[A0]]
+[[B1]]
+[16.0:] The kettle's hum is just a ghost in the hall,
+[:] I’m watching shadows stretch across the wall.
+[:] Your arm is heavy, a familiar weight,
+[:] I think I’ll let the coffee have to wait.
+[:] There’s a crease in the sheets where you turned in your sleep,
+[:] A small little promise I’m happy to keep.
+[[C2]]
+[48.0:] Oh, let the world keep spinning while we stay right here,
+[:] Everything is quiet, everything is clear.
+[:] It’s just the slow of morning, the gold in your eyes,
+[:] A soft-spoken love under porcelain skies.
+[:] (under porcelain skies)
+[[B3]]
+[69.3:] I found your sock halfway under the bed,
+[:] A million quiet thoughts inside my head.
+[:] You make a sound, a sleepy little sigh,
+[:] And I don’t need to ask the reason why.
+[:] We’re just two heartbeats in a dusty room,
+[:] Watching the sunlight finally start to bloom.
+[[C4]]
+[101.3:] Oh, let the world keep spinning while we stay right here,
+[:] Everything is quiet, everything is clear.
+[:] It’s just the slow of morning, the gold in your eyes,
+[:] A soft-spoken love under porcelain skies.
+[:] (under porcelain skies)
+[[D5]]
+[122.6:] No grand designs, no thunder in the chest,
+[:] Just this ordinary, beautiful rest.
+[:] Just a quiet heart, a simple mind,
+[:] The easiest thing I’ve ever come to find.
+[[E6]]
+[138.6:] Mmm, it's a good morning.
+[:] Good morning, love.
+[:] (just a slow morning...)
